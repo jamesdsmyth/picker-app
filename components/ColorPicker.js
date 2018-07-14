@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { View, Animated, Text, Dimensions, TouchableHighlight, PanResponder } from 'react-native';
 import styles from '../styles/styles';
+import ColorPickerFooter from './ColorPickerFooter';
 
 export default class ColorPicker extends Component {
   constructor(props) {
@@ -19,6 +20,8 @@ export default class ColorPicker extends Component {
       hideRgbValues: false,
       initialised: false
     }
+
+    this.saveColor = this.saveColor.bind(this);
   }
 
   // here we can set up the panhandlers before render
@@ -30,6 +33,11 @@ export default class ColorPicker extends Component {
   componentDidMount() {
     this.setHeight();
     this.setBgColor();
+  }
+
+  saveColor() {
+    alert('color saved!');
+    // now need to dispatch an action that saves this
   }
 
   // setting the height of the drag area if the prop is passed
@@ -221,18 +229,10 @@ export default class ColorPicker extends Component {
                 })
               }
               {!this.state.hideRgbValues &&
-                <View style={styles.colorCodeSection}>
-                  <Text style={styles.colorCodeSectionText}>
-                    {this.state.bgColor[0]}{' ,  '}
-                    {this.state.bgColor[1]}{' ,  '} 
-                    {this.state.bgColor[2]}
-                  </Text>
-                  <TouchableHighlight style={styles.colorCodeSectionSave}>
-                    <Text style={styles.colorCodeSectionSaveText}>
-                      Save
-                    </Text>
-                  </TouchableHighlight>
-                </View>
+                <ColorPickerFooter 
+                  bgColor={this.state.bgColor}
+                  saveColor={this.saveColor}
+                />
               }
           </View>
         }
