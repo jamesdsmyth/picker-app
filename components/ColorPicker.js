@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { View, Animated, Text, Dimensions, TouchableHighlight, PanResponder } from 'react-native';
+import { View, Animated, Dimensions, PanResponder } from 'react-native';
+import PropTypes from 'prop-types';
 import styles from '../styles/styles';
 import ColorPickerFooter from './ColorPickerFooter';
 
-export default class ColorPicker extends Component {
+class ColorPicker extends Component {
   constructor(props) {
     super(props);
 
@@ -233,3 +234,13 @@ export default class ColorPicker extends Component {
     );
   }
 }
+
+ColorPicker.propTypes = {
+  hideRgbValues: PropTypes.bool,
+  height: PropTypes.number,
+  returnColor: PropTypes.func,
+  saveColor: PropTypes.func,
+  color: PropTypes.array
+}
+
+export default ColorPicker;

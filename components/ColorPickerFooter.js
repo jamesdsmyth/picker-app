@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, TouchableHighlight } from 'react-native';
+import PropTypes from 'prop-types';
 import styles from '../styles/styles';
 
 const ColorPickerFooter = ({ bgColor, saveColor }) => (
@@ -19,5 +20,10 @@ const ColorPickerFooter = ({ bgColor, saveColor }) => (
     </TouchableHighlight>
   </View>
 )
+
+ColorPickerFooter.propTypes = {
+  bgColor: PropTypes.array.isRequired,
+  saveColor: PropTypes.func.isRequired
+}
 
 export default ColorPickerFooter;
