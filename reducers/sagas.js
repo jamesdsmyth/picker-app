@@ -1,4 +1,4 @@
-import { takeLatest, takeEvery } from 'redux-saga/effects';
+import { takeLatest, takeEvery, all } from 'redux-saga/effects';
 // import axios from 'axios';
 
 // firebase is now available whenever we need it.
@@ -23,6 +23,10 @@ export function* watchSaveColor() {
 
 // single entry point to start all our sagas at once
 export default function* rootSaga() {
-  yield takeEvery('GET_FIREBASE', watchFirebase)
-  yield takeLatest('SAVE_COLOR', watchSaveColor);
+  yield all([
+    watchFirebase()
+  ])
+  // console.log('RUNNING ROOTSAGA MIDDLEWARE');
+  // yield takeEvery('GET_FIREBASE', watchFirebase)
+  // yield takeLatest('SAVE_COLOR', watchSaveColor);
 }
