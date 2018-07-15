@@ -1,0 +1,3 @@
+- complete firebase saga call.
+- add action to add new color to firebase
+- colors page - list all colors
