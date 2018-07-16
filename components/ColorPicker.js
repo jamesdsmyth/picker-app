@@ -225,6 +225,7 @@ class ColorPicker extends Component {
               {!this.state.hideRgbValues &&
                 <ColorPickerFooter 
                   bgColor={this.state.bgColor}
+                  savedColors={this.props.savedColors}
                   saveColor={this.props.saveColor}
                 />
               }

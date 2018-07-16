@@ -9,12 +9,19 @@ class Landing extends Component {
     super();
 
     this.saveColor = this.saveColor.bind(this);
+    this.savedColors = this.savedColors.bind(this);
   }
 
   static navigationOptions = {
     header: null
   }
 
+  // calling this function will navigate to the users colors page
+  savedColors() {
+    this.props.navigation.navigate('SavedColors');
+  }
+
+  //  calling this function will dispatch an action that will write the color to firebase
   saveColor(colorArr) {
     this.props.saveColorDispatch(colorArr);
   }
@@ -25,6 +32,7 @@ class Landing extends Component {
         hideRgbValues
         // height={400}
         returnColor={this.getColor}
+        savedColors={this.savedColors}
         saveColor={this.saveColor}
         // color={[0, 25, 134]}
       />

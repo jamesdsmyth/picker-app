@@ -3,13 +3,21 @@ import { View, Text, TouchableHighlight } from 'react-native';
 import PropTypes from 'prop-types';
 import styles from '../styles/styles';
 
-const ColorPickerFooter = ({ bgColor, saveColor }) => (
+const ColorPickerFooter = ({ bgColor, savedColors, saveColor }) => (
   <View style={styles.colorCodeSection}>
     <Text style={styles.colorCodeSectionText}>
       {bgColor[0]}{' ,  '}
       {bgColor[1]}{' ,  '} 
       {bgColor[2]}
     </Text>
+    <TouchableHighlight 
+      style={styles.colorCodeSectionSave}
+      onPress={() => savedColors()}
+    >
+      <Text style={styles.colorCodeSectionSaveText}>
+        Colors
+      </Text>
+    </TouchableHighlight>
     <TouchableHighlight 
       style={styles.colorCodeSectionSave}
       onPress={() => saveColor(bgColor)}
