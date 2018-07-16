@@ -2,14 +2,21 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import ColorPicker from '../components/ColorPicker'
 
+import { saveColorAction } from '../actions/actions'
+
 class Landing extends Component {
+  constructor() {
+    super();
+
+    this.saveColor = this.saveColor.bind(this);
+  }
 
   static navigationOptions = {
     header: null
   }
 
   saveColor() {
-    alert('color saved in landing!');
+    this.props.saveColorDispatch();
     // we can just test the navigation functionality.
     // but really we should only navigate once we have saved the color in firebase
     // and recieved the response. then we should navigate to the saved colors screen
@@ -34,9 +41,9 @@ const mapStateToProps = (state) => {
   }
 }
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch, ) => {
   return {
-    saveColorDispatch: () => dispatch({ type: 'SAVE_COLOR' })
+    saveColorDispatch: () => dispatch(saveColorAction([1, 2, 3])) //dispatch({ type: 'SAVE_COLOR' })
   }
 }
 

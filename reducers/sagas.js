@@ -1,23 +1,20 @@
 import { takeLatest, takeEvery, all } from 'redux-saga/effects';
 import firebase from '../firebase';
+import { SSL_OP_SINGLE_DH_USE } from 'constants';
 // import axios from 'axios';
 
-// firebase is now available whenever we need it.
-
 function* getFirebase() {
-  // console.log('here we will call firebase');
   const itemsRef = yield firebase.database().ref();
-  // console.log(itemsRef);
-  // console.log('innnnn')
 
   itemsRef.on('value', function(snapshot) {
-    console.log('BRESHHH', snapshot.val());
+    console.log('the snapshot is', snapshot.val());
   }, function (errorObject) {
     console.log('The read failed: ' + errorObject.code);
   });
 }
 
 function* saveColor() {
+  alert('saving this color');
   // A post entry.
   var postData = {
     colorsArr: [205, 12, 128]
@@ -37,7 +34,9 @@ export function* watchFirebase() {
 }
 
 // this is called when API_CALL_REQUEST_COLORS is dispatched
-export function* watchSaveColor() {
+export function* watchSaveColor(arr) {
+
+  console.log('dssds', arr)
   yield saveColor();
 }
 
@@ -46,7 +45,6 @@ export default function* rootSaga() {
   yield all([
     watchFirebase()
   ])
-  // console.log('RUNNING ROOTSAGA MIDDLEWARE');
-  // yield takeEvery('GET_FIREBASE', watchFirebase)
-  // yield takeLatest('SAVE_COLOR', watchSaveColor);
+
+  yield takeEvery('SAVE_COLOR', watchSaveColor);
 }
