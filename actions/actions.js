@@ -4,3 +4,16 @@ export function saveColorAction(data) {
     data
   }
 }
+
+export function saveColorSuccessAction(data) {
+  return {
+    type: 'SAVE_COLOR_SUCCESS',
+    data
+  }
+}
+
+export function saveColorFailureAction(data) {
+  return {
+    type: 'SAVE_COLOR_FAILURE'
+  }
+}

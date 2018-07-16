@@ -1,22 +1,22 @@
-import { takeLatest, takeEvery, all } from 'redux-saga/effects';
+import { takeEvery, all } from 'redux-saga/effects';
 import firebase from '../firebase';
-// import axios from 'axios';
+import store from '../reducers/combinedReducers';
+import { saveColorSuccessAction } from '../actions/actions'
 
 // getting all the colors from /colors/ snapshot
 function* getFirebase() {
   const itemsRef = yield firebase.database().ref();
-
-  itemsRef.on('value', function(snapshot) {
-    console.log('the snapshot is', snapshot.val());
-  }, function (errorObject) {
-    console.log('The read failed: ' + errorObject.code);
+  
+  itemsRef.on('value', (snapshot) => {
+    store.dispatch(saveColorSuccessAction(snapshot.val()));
+  }, (errorObject) => {
+    store.dispatch(saveColorFailureAction());
   });
 }
 
 function* saveColor(color) {
-  alert('saving this color');
   const data = {
-    colorsArr: color.data
+    rgb: color.data
   };
 
   // Get a key for a new color
