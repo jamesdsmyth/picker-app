@@ -1,8 +1,8 @@
 import { takeLatest, takeEvery, all } from 'redux-saga/effects';
 import firebase from '../firebase';
-import { SSL_OP_SINGLE_DH_USE } from 'constants';
 // import axios from 'axios';
 
+// getting all the colors from /colors/ snapshot
 function* getFirebase() {
   const itemsRef = yield firebase.database().ref();
 
@@ -13,19 +13,18 @@ function* getFirebase() {
   });
 }
 
-function* saveColor() {
+function* saveColor(color) {
   alert('saving this color');
-  // A post entry.
-  var postData = {
-    colorsArr: [205, 12, 128]
+  const data = {
+    colorsArr: color.data
   };
 
-  // Get a key for a new Post.
-  var newPostKey = firebase.database().ref().child('colors').push().key;
+  // Get a key for a new color
+  const newPostKey = firebase.database().ref().child('colors').push().key;
 
-  // Write the new post's data simultaneously in the posts list and the user's post list.
-  var updates = {};
-  updates['/colors/' + newPostKey] = postData;
+  // add the color to the list /colors/
+  let updates = {};
+  updates['/colors/' + newPostKey] = data;
   firebase.database().ref().update(updates);
 }
 
@@ -34,10 +33,8 @@ export function* watchFirebase() {
 }
 
 // this is called when API_CALL_REQUEST_COLORS is dispatched
-export function* watchSaveColor(arr) {
-
-  console.log('dssds', arr)
-  yield saveColor();
+export function* watchSaveColor(data) {
+  yield saveColor(data);
 }
 
 // single entry point to start all our sagas at once

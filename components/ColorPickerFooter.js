@@ -12,7 +12,7 @@ const ColorPickerFooter = ({ bgColor, saveColor }) => (
     </Text>
     <TouchableHighlight 
       style={styles.colorCodeSectionSave}
-      onPress={saveColor}
+      onPress={() => saveColor(bgColor)}
     >
       <Text style={styles.colorCodeSectionSaveText}>
         Save

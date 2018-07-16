@@ -15,8 +15,11 @@ class Landing extends Component {
     header: null
   }
 
-  saveColor() {
-    this.props.saveColorDispatch();
+  saveColor(colorArr) {
+
+    console.log('LANDINGGGGG', colorArr);
+
+    this.props.saveColorDispatch(colorArr);
     // we can just test the navigation functionality.
     // but really we should only navigate once we have saved the color in firebase
     // and recieved the response. then we should navigate to the saved colors screen
@@ -41,9 +44,9 @@ const mapStateToProps = (state) => {
   }
 }
 
-const mapDispatchToProps = (dispatch, ) => {
+const mapDispatchToProps = (dispatch, colorArr) => {
   return {
-    saveColorDispatch: () => dispatch(saveColorAction([1, 2, 3])) //dispatch({ type: 'SAVE_COLOR' })
+    saveColorDispatch: (colorArr) => dispatch(saveColorAction(colorArr)) //dispatch({ type: 'SAVE_COLOR' })
   }
 }
 
