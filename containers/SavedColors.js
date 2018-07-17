@@ -6,28 +6,19 @@ import { connect } from 'react-redux';
 class SavedColors extends Component {
   render() {
     const list = this.props.colors;
-    console.log(this.props.colors);
-    console.log(this.props.colors[Object.keys(this.props.colors)[0]].rgb.toString());
+    const rgbList = Object.keys(list).map((item, i) => {
+      return {
+        rgb: list[item].rgb
+      }
+    });
+    
     return (
       <View style={styles.container}>
         <FlatList
-          data={[
-            // {key: 'Devin'},
-            // {key: 'Jackson'},
-            // {key: 'James'},
-            // {key: 'Joel'},
-            // {key: 'John'},
-            // {key: 'Jillian'},
-            // {key: 'Jimmy'},
-            // {key: 'Julie'},
-            list
-          ]}
-          renderItem={({item, index}) => {
-            <Text key={index}>
-              {list[Object.keys(list)[index]].toString()}
-              {/* THIS IS NOT RENDERING PROPERLY!!!!! */}
-            </Text>
-          }
+          data={rgbList}
+
+          renderItem={({item}) => 
+            <Text style={styles.item}>{item.rgb}</Text>
           }
         />
       </View>
