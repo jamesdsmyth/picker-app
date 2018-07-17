@@ -55,6 +55,10 @@ const styles = StyleSheet.create({
     position: 'absolute',
     borderWidth: 1,
     borderColor: '#cccccc'
+  },
+  savedColor: {
+    flex: 1,
+    width: window.width
   }
 });
 
