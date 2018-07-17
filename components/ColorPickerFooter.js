@@ -11,7 +11,7 @@ const ColorPickerFooter = ({ bgColor, savedColors, saveColor }) => (
       {bgColor[2]}
     </Text>
     <TouchableHighlight 
-      style={styles.colorCodeSectionSave}
+      style={[styles.btn, styles.colorCodeSectionColors]}
       onPress={() => savedColors()}
     >
       <Text style={styles.colorCodeSectionSaveText}>
@@ -19,7 +19,7 @@ const ColorPickerFooter = ({ bgColor, savedColors, saveColor }) => (
       </Text>
     </TouchableHighlight>
     <TouchableHighlight 
-      style={styles.colorCodeSectionSave}
+      style={[styles.btn, styles.colorCodeSectionSave]}
       onPress={() => saveColor(bgColor)}
     >
       <Text style={styles.colorCodeSectionSaveText}>

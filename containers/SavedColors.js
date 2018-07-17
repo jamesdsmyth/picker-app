@@ -17,9 +17,11 @@ class SavedColors extends Component {
         <FlatList
           data={rgbList}
           renderItem={
-            ({item}) => {
+            ({item}, i) => {
               return (
-                <View style={
+                <View
+                  key={i}
+                  style={
                   [
                     styles.savedColor,
                     { 'backgroundColor': `rgb(${item.rgb[0]}, ${item.rgb[1]}, ${item.rgb[2]})` }

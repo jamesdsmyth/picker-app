@@ -29,13 +29,18 @@ const styles = StyleSheet.create({
   colorCodeSectionText: {
     fontSize: 20
   },
-  colorCodeSectionSave: {
-    backgroundColor: '#1db954',
+  btn: {
     borderRadius: 4,
     paddingTop: 5,
     paddingLeft: 10,
     paddingBottom: 5,
     paddingRight: 10
+  },
+  colorCodeSectionSave: {
+    backgroundColor: '#1db954'
+  },
+  colorCodeSectionColors: {
+    backgroundColor: '#4980eb'
   },
   colorCodeSectionSaveText: {
     fontSize: 20,
