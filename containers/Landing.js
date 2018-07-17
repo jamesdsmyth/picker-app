@@ -18,7 +18,11 @@ class Landing extends Component {
 
   // calling this function will navigate to the users colors page
   savedColors() {
-    this.props.navigation.navigate('SavedColors');
+    if(true) {
+      this.props.navigation.navigate('SignIn');
+    } else {
+      this.props.navigation.navigate('SavedColors');
+    }
   }
 
   //  calling this function will dispatch an action that will write the color to firebase

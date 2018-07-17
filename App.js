@@ -5,11 +5,13 @@ import store from './reducers/combinedReducers';
 
 import Landing from './containers/Landing';
 import SavedColors from './containers/SavedColors';
+import SignIn from './containers/SignIn';
 
 const RootStack = createStackNavigator(
   {
     Home: Landing,
-    SavedColors: SavedColors
+    SavedColors: SavedColors,
+    SignIn: SignIn
   },
   {
     initialRouteName: 'Home',
