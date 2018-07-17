@@ -1,9 +1,9 @@
 const getColorsReducer = (state = {}, action) => {
   switch(action.type) {
-    case 'SAVE_COLOR_SUCCESS':
+    case 'GET_FIREBASE_COLORS_SUCCESS':
       return action.data
 
-    case 'SAVE_COLOR_FAILURE':
+    case 'GET_FIREBASE_COLORS_FAILURE':
       return state;
 
     default:

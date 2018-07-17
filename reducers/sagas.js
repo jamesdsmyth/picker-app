@@ -1,16 +1,30 @@
 import { takeEvery, all } from 'redux-saga/effects';
 import firebase from '../firebase';
 import store from '../reducers/combinedReducers';
-import { saveColorSuccessAction } from '../actions/actions'
+import { getColorSuccessAction, getColorFailureAction } from '../actions/actions'
 
 // getting all the colors from /colors/ snapshot
 function* getFirebase() {
   const itemsRef = yield firebase.database().ref();
   
   itemsRef.on('value', (snapshot) => {
-    store.dispatch(saveColorSuccessAction(snapshot.val()));
+    store.dispatch(getColorSuccessAction(snapshot.val()));
   }, (errorObject) => {
-    store.dispatch(saveColorFailureAction());
+    store.dispatch(getColorFailureAction());
+  });
+}
+
+function* createUser() {
+  const email = 'bdbb@bbb.com';
+  const password = '211212121';
+  firebase.auth().createUserWithEmailAndPassword(email, password).then((response) => {
+    console.log(response);
+    alert('created');
+  }).catch(function(error) {
+    // Handle Errors here.
+    var errorCode = error.code;
+    var errorMessage = error.message;
+    // ...
   });
 }
 

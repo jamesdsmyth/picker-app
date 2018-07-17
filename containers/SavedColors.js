@@ -4,9 +4,13 @@ import styles from '../styles/styles';
 import { connect } from 'react-redux';
 
 class SavedColors extends Component {
+
+
+  _keyExtractor = (item, index) => item.id;
+
   render() {
     const list = this.props.colors || {};
-    const rgbList = Object.keys(list).map((item, i) => {
+    const rgbList = Object.keys(list).map(item => {
       return {
         rgb: list[item].rgb
       }
@@ -16,18 +20,18 @@ class SavedColors extends Component {
       <View style={styles.container}>
         <FlatList
           data={rgbList}
+          keyExtractor={this._keyExtractor}
           renderItem={
-            ({item}, i) => {
+            ({item}) => {
               return (
                 <View
-                  key={i}
                   style={
                   [
                     styles.savedColor,
                     { 'backgroundColor': `rgb(${item.rgb[0]}, ${item.rgb[1]}, ${item.rgb[2]})` }
                   ]
                 }>
-                  <Text style={styles.item}>{item.rgb}</Text>
+                  <Text style={styles.item}>{item.rgb[0]}, {item.rgb[1]}, {item.rgb[2]}</Text>
                 </View>
               )
             }   

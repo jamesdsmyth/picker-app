@@ -5,15 +5,15 @@ export function saveColorAction(data) {
   }
 }
 
-export function saveColorSuccessAction(data) {
+export function getColorSuccessAction(data) {
   return {
-    type: 'SAVE_COLOR_SUCCESS',
+    type: 'GET_FIREBASE_COLORS_SUCCESS',
     data
   }
 }
 
-export function saveColorFailureAction(data) {
+export function getColorFailureAction(data) {
   return {
-    type: 'SAVE_COLOR_FAILURE'
+    type: 'GET_FIREBASE_COLORS_FAILURE'
   }
 }
