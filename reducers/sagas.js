@@ -1,4 +1,4 @@
-import { takeEvery, all } from 'redux-saga/effects';
+import { takeEvery, takeLatest, all } from 'redux-saga/effects';
 import firebase from '../firebase';
 import store from '../reducers/combinedReducers';
 import { getColorSuccessAction, getColorFailureAction } from '../actions/actions'
@@ -12,6 +12,18 @@ function* getFirebase() {
   }, (errorObject) => {
     store.dispatch(getColorFailureAction());
   });
+}
+
+function* signIn(data) {
+  // const { email, password} = data;
+  // firebase.auth().signInWithEmailAndPassword(email, password).catch(error => {
+  //   // Handle Errors here.
+  //   var errorCode = error.code;
+  //   var errorMessage = error.message;
+
+  //   console.log('there was an error', error);
+  //   // ...
+  // });
 }
 
 function* createUser() {
@@ -48,7 +60,13 @@ export function* watchFirebase() {
 
 // this is called when API_CALL_REQUEST_COLORS is dispatched
 export function* watchSaveColor(data) {
+
+  console.log('inside watch sign in')
   yield saveColor(data);
+}
+
+export function* watchSignIn(data) {
+  yield signIn(data);
 }
 
 // single entry point to start all our sagas at once
@@ -58,4 +76,5 @@ export default function* rootSaga() {
   ])
 
   yield takeEvery('SAVE_COLOR', watchSaveColor);
+  yield takeLatest('SIGN_IN', watchSignIn);
 }
