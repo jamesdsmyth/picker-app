@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 
 class SavedColors extends Component {
 
-
+  // react native function that creates a key for you
   _keyExtractor = (item, index) => item.id;
 
   render() {
@@ -44,7 +44,7 @@ class SavedColors extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    colors: state.colors
+    colors: state.getColorsReducer.colors
   }
 }
 

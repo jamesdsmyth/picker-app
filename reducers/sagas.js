@@ -1,7 +1,10 @@
 import { takeEvery, takeLatest, all } from 'redux-saga/effects';
 import firebase from '../firebase';
 import store from '../reducers/combinedReducers';
-import { getColorSuccessAction, getColorFailureAction } from '../actions/actions'
+import { 
+    getColorSuccessAction, 
+    getColorFailureAction,
+    signInSuccessAction } from '../actions/actions'
 
 // getting all the colors from /colors/ snapshot
 function* getFirebase() {
@@ -14,24 +17,49 @@ function* getFirebase() {
   });
 }
 
-function* signIn(data) {
-  // const { email, password} = data;
-  // firebase.auth().signInWithEmailAndPassword(email, password).catch(error => {
-  //   // Handle Errors here.
-  //   var errorCode = error.code;
-  //   var errorMessage = error.message;
 
-  //   console.log('there was an error', error);
-  //   // ...
-  // });
+// so from signing a user in, we either need to save the color, or show them their colors.
+
+
+
+
+
+
+function* signIn(data) {
+
+  console.log('yielding this in sign in', data);
+  firebase.auth().signInWithEmailAndPassword(data.data.email, data.data.password).then(response => {
+    alert('signing in');
+    console.log(response);
+    store.dispatch(signInSuccessAction(response));
+
+
+
+    // now need to call another function here
+
+
+    // now from here we get the colors but pass the user ID.
+
+
+
+
+  }).catch(error => {
+    // Handle Errors here.
+    var errorCode = error.code;
+    var errorMessage = error.message;
+
+    console.log('there was an error', error);
+    alert('Please try again');
+    // ...
+  });
 }
 
 function* createUser() {
-  const email = 'bdbb@bbb.com';
+  const email = 'bdbb@bsdsdsbb.com';
   const password = '211212121';
   firebase.auth().createUserWithEmailAndPassword(email, password).then((response) => {
-    console.log(response);
-    alert('created');
+    // from here we need to dispatch an action that says successful sign up and take them to the new page
+    // store.dispatch()
   }).catch(function(error) {
     // Handle Errors here.
     var errorCode = error.code;
@@ -63,9 +91,11 @@ export function* watchSaveColor(data) {
 
   console.log('inside watch sign in')
   yield saveColor(data);
+  yield createUser();
 }
 
 export function* watchSignIn(data) {
+  console.log('now in watchSignIn', data)
   yield signIn(data);
 }
 

@@ -35,12 +35,7 @@ class SignIn extends Component {
   signIn() {
     var value = this.refs.form.getValue();
     if (value) {
-      console.log(value);
-
       this.props.signInDispatch(value);
-      // passing Struct {email: "Xxx", password: "rere"}.
-      // From this I will be able to login to firebase.
-      // needs to call a dispatch
     }
   }
 
@@ -64,13 +59,12 @@ class SignIn extends Component {
 }
 
 const mapStateToProps = (state) => {
-  console.log('the state from firebase is', state);
   return {
     colors: state
   }
 }
 
-const mapDispatchToProps = (dispatch, formData) => {
+const mapDispatchToProps = (dispatch) => {
   return {
     signInDispatch: (formData) => dispatch(signInAction(formData))
   }

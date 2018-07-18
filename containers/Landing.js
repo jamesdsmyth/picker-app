@@ -18,7 +18,9 @@ class Landing extends Component {
 
   // calling this function will navigate to the users colors page
   savedColors() {
-    if(true) {
+
+    console.log(this.props);
+    if(!this.props.user.loggedIn) {
       this.props.navigation.navigate('SignIn');
     } else {
       this.props.navigation.navigate('SavedColors');
@@ -47,7 +49,7 @@ class Landing extends Component {
 const mapStateToProps = (state) => {
   console.log('the state from firebase is', state);
   return {
-    colors: state
+    user: state.currentUserReducer
   }
 }
 

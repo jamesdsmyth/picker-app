@@ -29,3 +29,10 @@ export function signInAction(data) {
     }
   }
 }
+
+export function signInSuccessAction(data) {
+  return {
+    type: 'SIGN_IN_SUCCESS',
+    email: data.user.email
+  }
+}
