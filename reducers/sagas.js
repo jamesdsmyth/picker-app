@@ -4,7 +4,8 @@ import store from '../reducers/combinedReducers';
 import { 
     getColorSuccessAction, 
     getColorFailureAction,
-    signInSuccessAction } from '../actions/actions'
+    signInSuccessAction,
+    signUpSuccessAction } from '../actions/actions'
 
 // getting all the colors from /colors/ snapshot
 function* getFirebase() {
@@ -62,11 +63,15 @@ function* signUp(data) {
     // from here we need to dispatch an action that says successful sign up and take them to the new page
     // store.dispatch()
 
-    console.log(response.user.uid);
+    console.log(response);
 
-    signIn(data)
+    store.dispatch(signUpSuccessAction(response.user.uid));
+
+    // signIn(data)
     // WITH THE RESPONSE ID KEY WE NEED TO CREATE A LIST WHERE THIS USER CAN STORE THEIR COLORS AND NAME ETC
     // response.uid
+
+
 
 
   }).catch(function(error) {
@@ -111,7 +116,6 @@ export function* watchSignIn(data) {
 
 export function* watchSignUp(data) {
   yield signUp(data);
-  yield signIn(data);
 }
 
 // single entry point to start all our sagas at once

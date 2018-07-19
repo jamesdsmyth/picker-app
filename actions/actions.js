@@ -45,3 +45,9 @@ export function signUpAction(data) {
     }
   }
 }
+
+export function signUpSuccessAction(data) {
+  return {
+    type: 'SIGN_UP_SUCCESS'
+  }
+}
