@@ -54,16 +54,19 @@ function* signIn(data) {
   });
 }
 
-function* createUser() {
-  const email = 'bdbb@bsdsdsbb.com';
-  const password = '211212121';
-  firebase.auth().createUserWithEmailAndPassword(email, password).then((response) => {
+function* signUp(data) {
+  firebase.auth().createUserWithEmailAndPassword(data.data.email, data.data.password).then((response) => {
     // from here we need to dispatch an action that says successful sign up and take them to the new page
     // store.dispatch()
+
+    console.log(response);
+    // WITH THE RESPONSE ID KEY WE NEED TO CREATE A LIST WHERE THIS USER CAN STORE THEIR COLORS AND NAME ETC
   }).catch(function(error) {
     // Handle Errors here.
     var errorCode = error.code;
     var errorMessage = error.message;
+
+    console.log(error);
     // ...
   });
 }
@@ -91,12 +94,15 @@ export function* watchSaveColor(data) {
 
   console.log('inside watch sign in')
   yield saveColor(data);
-  yield createUser();
 }
 
 export function* watchSignIn(data) {
   console.log('now in watchSignIn', data)
   yield signIn(data);
+}
+
+export function* watchSignUp(data) {
+  yield signUp(data);
 }
 
 // single entry point to start all our sagas at once
@@ -107,4 +113,5 @@ export default function* rootSaga() {
 
   yield takeEvery('SAVE_COLOR', watchSaveColor);
   yield takeLatest('SIGN_IN', watchSignIn);
+  yield takeLatest('SIGN_UP', watchSignUp);
 }

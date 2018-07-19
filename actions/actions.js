@@ -19,8 +19,6 @@ export function getColorFailureAction(data) {
 }
 
 export function signInAction(data) {
-
-  console.log('sign innnn action', data);
   return {
     type: 'SIGN_IN',
     data: {
@@ -34,5 +32,16 @@ export function signInSuccessAction(data) {
   return {
     type: 'SIGN_IN_SUCCESS',
     email: data.user.email
+  }
+}
+
+export function signUpAction(data) {
+  return {
+    type: 'SIGN_UP',
+    data: {
+      name: data.name,
+      email: data.email,
+      password: data.password
+    }
   }
 }

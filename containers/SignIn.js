@@ -1,19 +1,28 @@
 import React, { Component} from 'react';
 import { View, Text, TouchableHighlight } from 'react-native';
 import { connect } from 'react-redux';
-import { signInAction } from '../actions/actions'
+import { signInAction, signUpAction } from '../actions/actions'
 import t from 'tcomb-form-native';
 import styles from '../styles/styles';
 
-// here we are: define your domain model
 const Form = t.form.Form;
+
 const signInFields = t.struct({
+  email: t.String,
+  password: t.String
+});
+
+const signUpFields = t.struct({
+  name: t.String,
   email: t.String,
   password: t.String
 });
 
 var options = {
   fields: {
+    name: {
+      error: 'Enter your name'
+    },
     email: {
       error: 'Enter your email'
     },
@@ -30,6 +39,7 @@ class SignIn extends Component {
     super()
 
     this.signIn = this.signIn.bind(this);
+    this.signUp = this.signUp.bind(this);
   }
 
   signIn() {
@@ -39,12 +49,18 @@ class SignIn extends Component {
     }
   }
 
+  signUp() {
+    var value = this.refs.signUpform.getValue();
+    if (value) {
+      this.props.signUpDispatch(value);
+    }
+  }
+
   render() {
     return (
       <View style={styles.container}>
-        {/* display */}
         <Form
-          ref="form"
+          ref='form'
           type={signInFields}
           options={options}
         />
@@ -52,6 +68,17 @@ class SignIn extends Component {
           style={styles.button}
           onPress={this.signIn}>
           <Text style={styles.buttonText}>Save</Text>
+        </TouchableHighlight>
+
+        <Form
+          ref='signUpform'
+          type={signUpFields}
+          options={options}
+        />
+        <TouchableHighlight 
+          style={styles.button}
+          onPress={this.signUp}>
+          <Text style={styles.buttonText}>Create</Text>
         </TouchableHighlight>
       </View>
     )
@@ -66,7 +93,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    signInDispatch: (formData) => dispatch(signInAction(formData))
+    signInDispatch: (formData) => dispatch(signInAction(formData)),
+    signUpDispatch: (formData) => dispatch(signUpAction(formData))
   }
 }
 
