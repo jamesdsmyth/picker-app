@@ -27,6 +27,8 @@ function* getFirebase() {
 
 function* signIn(data) {
 
+  debugger;
+
   console.log('yielding this in sign in', data);
   firebase.auth().signInWithEmailAndPassword(data.data.email, data.data.password).then(response => {
     alert('signing in');
@@ -55,12 +57,18 @@ function* signIn(data) {
 }
 
 function* signUp(data) {
+  debugger;
   firebase.auth().createUserWithEmailAndPassword(data.data.email, data.data.password).then((response) => {
     // from here we need to dispatch an action that says successful sign up and take them to the new page
     // store.dispatch()
 
-    console.log(response);
+    console.log(response.user.uid);
+
+    signIn(data)
     // WITH THE RESPONSE ID KEY WE NEED TO CREATE A LIST WHERE THIS USER CAN STORE THEIR COLORS AND NAME ETC
+    // response.uid
+
+
   }).catch(function(error) {
     // Handle Errors here.
     var errorCode = error.code;
@@ -103,6 +111,7 @@ export function* watchSignIn(data) {
 
 export function* watchSignUp(data) {
   yield signUp(data);
+  yield signIn(data);
 }
 
 // single entry point to start all our sagas at once
