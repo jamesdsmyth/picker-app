@@ -1,4 +1,4 @@
-import { takeEvery, takeLatest, all } from 'redux-saga/effects';
+import { takeEvery, takeLatest, all, put, call } from 'redux-saga/effects';
 import firebase from '../firebase';
 import store from '../reducers/combinedReducers';
 import { 
@@ -6,6 +6,15 @@ import {
     getColorFailureAction,
     signInSuccessAction,
     signUpSuccessAction } from '../actions/actions'
+
+
+function* connect() {
+  return new Promise(resolve => {
+    const database = firebase.database();
+    const connectionRef = database.ref();
+    console.log(connectionRef.on('value', resolve));
+  });
+}
 
 // getting all the colors from /colors/ snapshot
 function* getFirebase() {
@@ -18,70 +27,37 @@ function* getFirebase() {
   });
 }
 
-
-// so from signing a user in, we either need to save the color, or show them their colors.
-
-
-
-
-
-
 function* signIn(data) {
+  const auth = firebase.auth();
+  const result = yield call(
+    [auth, auth.signInWithEmailAndPassword],
+    data.data.email,
+    data.data.password
+  )
 
-  debugger;
-
-  console.log('yielding this in sign in', data);
-  firebase.auth().signInWithEmailAndPassword(data.data.email, data.data.password).then(response => {
-    alert('signing in');
-    console.log(response);
-    store.dispatch(signInSuccessAction(response));
-
-
-
-    // now need to call another function here
-
-
-    // now from here we get the colors but pass the user ID.
-
-
-
-
-  }).catch(error => {
-    // Handle Errors here.
-    var errorCode = error.code;
-    var errorMessage = error.message;
-
-    console.log('there was an error', error);
-    alert('Please try again');
-    // ...
-  });
+  yield put(signInSuccessAction(result));
 }
 
+// sign up will also sign the user in by calling yield signIn(data);
+// the way this works, is yield call() will call firebase with the parameters.
+// if there is an error, it will drop into the catch() without continuing.
+// But if there is a success, it will continue and dispatch an action using the 
+// 'yield put' method
 function* signUp(data) {
-  debugger;
-  firebase.auth().createUserWithEmailAndPassword(data.data.email, data.data.password).then((response) => {
-    // from here we need to dispatch an action that says successful sign up and take them to the new page
-    // store.dispatch()
 
-    console.log(response);
+  try {
+    const auth = firebase.auth();
+    const result = yield call(
+      [auth, auth.createUserWithEmailAndPassword],
+      data.data.email,
+      data.data.password
+    )
 
-    store.dispatch(signUpSuccessAction(response.user.uid));
-
-    // signIn(data)
-    // WITH THE RESPONSE ID KEY WE NEED TO CREATE A LIST WHERE THIS USER CAN STORE THEIR COLORS AND NAME ETC
-    // response.uid
-
-
-
-
-  }).catch(function(error) {
-    // Handle Errors here.
-    var errorCode = error.code;
-    var errorMessage = error.message;
-
+    yield put(signUpSuccessAction(result.user.uid));
+    yield signIn(data);
+  } catch(error) {
     console.log(error);
-    // ...
-  });
+  }
 }
 
 function* saveColor(color) {
@@ -102,15 +78,11 @@ export function* watchFirebase() {
   yield getFirebase();
 }
 
-// this is called when API_CALL_REQUEST_COLORS is dispatched
-export function* watchSaveColor(data) {
-
-  console.log('inside watch sign in')
+export function* watchSaveColor(data) { 
   yield saveColor(data);
 }
 
 export function* watchSignIn(data) {
-  console.log('now in watchSignIn', data)
   yield signIn(data);
 }
 

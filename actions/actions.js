@@ -29,6 +29,9 @@ export function signInAction(data) {
 }
 
 export function signInSuccessAction(data) {
+
+
+  console.log(data, 'SIGN IN SUCCESS');
   return {
     type: 'SIGN_IN_SUCCESS',
     email: data.user.email
@@ -36,6 +39,9 @@ export function signInSuccessAction(data) {
 }
 
 export function signUpAction(data) {
+
+  console.log('returned');
+  
   return {
     type: 'SIGN_UP',
     data: {

@@ -1,5 +1,4 @@
 const getColorsReducer = (state = {}, action) => {
-  console.log('aaaa', action)
   switch(action.type) {
     case 'GET_FIREBASE_COLORS_SUCCESS':
       return action.data
