@@ -5,7 +5,8 @@ import {
     getColorSuccessAction, 
     getColorFailureAction,
     signInSuccessAction,
-    signUpSuccessAction } from '../actions/actions'
+    signUpSuccessAction 
+  } from '../actions/actions';
 
 
 function* connect() {
@@ -35,6 +36,8 @@ function* signIn(data) {
     data.data.password
   )
 
+  console.log(result);
+
   yield put(signInSuccessAction(result));
 }
 
@@ -55,31 +58,48 @@ function* signUp(data) {
 
     yield put(signUpSuccessAction(result.user.uid));
     yield signIn(data);
+    yield saveColor(result.user.uid, {data: [1, 2, 3]});
+
+    console.log(result.user.uid);
+
   } catch(error) {
     console.log(error);
   }
 }
 
-function* saveColor(color) {
+function* saveColor(uid, color) {
   const data = {
     rgb: color.data
-  };
+  }
+
+  console.log(data);
+
+  // MAY NEED TO SAVE TO THE DATABASE USING A KEY AS I AM SIGNED IN
 
   // Get a key for a new color
   const newPostKey = firebase.database().ref().child('colors').push().key;
 
   // add the color to the list /colors/
   let updates = {};
-  updates['/colors/' + newPostKey] = data;
-  firebase.database().ref().update(updates);
+  updates[`/colors/${uid}/${newPostKey}`] = data;
+  console.log(updates[`/colors/${uid}/${newPostKey}`]);
+  firebase.database().ref().update(updates).then(value => {
+    console.log('then we will navigate to saved colors');
+    // console.log(value);
+    // Store.dispatch(actions.showAddNotification(beerName, 'beer'));
+}).catch((error) => {
+    console.log(error);
+    // alert('error saving the beer');
+});
 }
 
 export function* watchFirebase() {
   yield getFirebase();
 }
 
-export function* watchSaveColor(data) { 
-  yield saveColor(data);
+export function* watchSaveColor(data) {
+  console.log(data);
+  yield saveColor('GHGkbhulhhlfkl', data);
 }
 
 export function* watchSignIn(data) {
