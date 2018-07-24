@@ -1,6 +1,7 @@
 import { takeEvery, takeLatest, all, put, call } from 'redux-saga/effects';
 import firebase from '../firebase';
 import store from '../reducers/combinedReducers';
+import { NavigationActions } from 'react-navigation';
 import { 
     getColorSuccessAction, 
     getColorFailureAction,
@@ -36,8 +37,7 @@ function* signIn(data) {
     data.data.password
   )
 
-  console.log(result);
-
+  // dispatching this action will redirect the logged in user to their colors list
   yield put(signInSuccessAction(result));
 }
 
@@ -58,6 +58,7 @@ function* signUp(data) {
 
     yield put(signUpSuccessAction(result.user.uid));
     yield signIn(data);
+
     // yield saveColor(result.user.uid, {data: [1, 2, 3]});
 
     // now needs to use navigate.back()

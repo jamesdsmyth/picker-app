@@ -56,7 +56,16 @@ class SignIn extends Component {
     }
   }
 
+  // once a user is logged in, they will be redirected to their colors page
+  componentWillReceiveProps(newProps) {
+    if(newProps.user.loggedIn) {
+      this.props.navigation.navigate('SavedColors');
+    }
+  }
+
   render() {
+
+    console.log(this.props);
     return (
       <View style={styles.container}>
         <Form
@@ -87,7 +96,7 @@ class SignIn extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    colors: state
+    user: state.currentUserReducer
   }
 }
 
