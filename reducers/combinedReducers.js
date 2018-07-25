@@ -1,4 +1,8 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux';
+
+import { persistStore, persistReducer } from 'redux-persist'
+import storage from 'redux-persist/lib/storage' // defaults to localStorage for web and AsyncStorage for react-native
+
 import createSagaMiddleware from 'redux-saga';
 
 import rootSaga from './sagas';
@@ -6,22 +10,33 @@ import rootSaga from './sagas';
 import getColorsReducer from './getColorsReducer';
 import currentUserReducer from './currentUserReducer';
 
+// persistant storage for the store when closing and reopening an app
+const persistConfig = {
+  key: 'root',
+  storage,
+}
+
 // create the saga middleware
 const sagaMiddleware = createSagaMiddleware();
 
 // combine all our reducers
-const reducers = combineReducers({
+const combinedReducers = combineReducers({
   getColorsReducer,
   currentUserReducer
-})
+});
 
-// create our store
+const persistedReducer = persistReducer(persistConfig, combinedReducers)
+
 const store = createStore(
-  reducers,
+  persistedReducer,
   applyMiddleware(sagaMiddleware)
 )
 
-// run the root saga
+const persistor = persistStore(store)
+
 sagaMiddleware.run(rootSaga);
 
-export default store;
+const bbb = { store, persistor };
+
+export default bbb;
+

@@ -9,12 +9,20 @@ class SavedColors extends Component {
   _keyExtractor = (item, index) => item.id;
 
   render() {
+
+    console.log(this.props.colors)
     const list = this.props.colors || {};
     const rgbList = Object.keys(list).map(item => {
-      return {
-        rgb: list[item].rgb
+      console.log(list[item]);
+
+      if(list[item].rgb !== null) {
+        return {
+          rgb: list[item].rgb
+        }
       }
     });
+
+    console.log(rgbList);
 
     return (
       <View style={styles.container}>
@@ -31,7 +39,7 @@ class SavedColors extends Component {
                     { 'backgroundColor': `rgb(${item.rgb[0]}, ${item.rgb[1]}, ${item.rgb[2]})` }
                   ]
                 }>
-                  <Text style={styles.item}>{item.rgb[0]}, {item.rgb[1]}, {item.rgb[2]}</Text>
+                  {/* <Text style={styles.item}>{item.rgb[0]}, {item.rgb[1]}, {item.rgb[2]}</Text> */}
                 </View>
               )
             }   

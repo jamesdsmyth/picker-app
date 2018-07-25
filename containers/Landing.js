@@ -20,7 +20,7 @@ class Landing extends Component {
   savedColors() {
 
     console.log(this.props);
-    if(!this.props.user.loggedIn) {
+    if(this.props.user.loggedIn) {
       this.props.navigation.navigate('SignIn');
     } else {
       this.props.navigation.navigate('SavedColors');
@@ -33,6 +33,8 @@ class Landing extends Component {
   }
 
   render() {
+
+    console.log(this.props);
     return (
       <ColorPicker 
         hideRgbValues

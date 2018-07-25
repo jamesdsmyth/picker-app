@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import { createStackNavigator } from 'react-navigation';
 import { Provider } from 'react-redux';
-import store from './reducers/combinedReducers';
+import { PersistGate } from 'redux-persist/integration/react'
+import bbb from './reducers/combinedReducers';
+
+console.log(bbb.store);
 
 import Landing from './containers/Landing';
 import SavedColors from './containers/SavedColors';
@@ -21,8 +24,10 @@ const RootStack = createStackNavigator(
 export default class App extends Component {
   render() {
     return (
-      <Provider store={store}>
-        <RootStack />
+      <Provider store={bbb.store}>
+        <PersistGate loading={null} persistor={bbb.persistor}>
+          <RootStack />
+        </PersistGate>
       </Provider>
     )
   }
