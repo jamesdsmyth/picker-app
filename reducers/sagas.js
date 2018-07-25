@@ -1,6 +1,6 @@
 import { takeEvery, takeLatest, all, put, call } from 'redux-saga/effects';
 import firebase from '../firebase';
-import store from '../reducers/combinedReducers';
+import persistorStore from '../reducers/combinedReducers';
 import { NavigationActions } from 'react-navigation';
 import { 
     getColorSuccessAction, 
@@ -23,9 +23,10 @@ function* getFirebase() {
   const itemsRef = yield firebase.database().ref();
   
   itemsRef.on('value', (snapshot) => {
-    store.dispatch(getColorSuccessAction(snapshot.val()));
+    console.log(snapshot.val());
+    persistorStore.persistor.dispatch(getColorSuccessAction(snapshot.val()));
   }, (errorObject) => {
-    store.dispatch(getColorFailureAction());
+    persistorStore.persistor.dispatch(getColorFailureAction());
   });
 }
 
