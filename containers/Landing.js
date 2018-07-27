@@ -19,8 +19,8 @@ class Landing extends Component {
   // calling this function will navigate to the users colors page
   savedColors() {
 
-    console.log(this.props);
-    if(this.props.user.loggedIn) {
+    console.log('SAVEDCOLORS', this.props);
+    if(!this.props.user.loggedIn) {
       this.props.navigation.navigate('SignIn');
     } else {
       this.props.navigation.navigate('SavedColors');

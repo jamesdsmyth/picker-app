@@ -62,8 +62,6 @@ function* signUp(data) {
 
     // yield saveColor(result.user.uid, {data: [1, 2, 3]});
 
-    // now needs to use navigate.back()
-
     console.log(result.user.uid);
 
   } catch(error) {
