@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, FlatList } from 'react-native';
+import { View, Text, FlatList } from 'react-native';
 import styles from '../styles/styles';
 import { connect } from 'react-redux';
 
@@ -19,20 +19,15 @@ class SavedColors extends Component {
   _keyExtractor = (item, index) => item.id;
 
   render() {
-    console.log('the list', this.props.colors)
-    const list = this.props.colors || {};
-    // const rgbList = Object.keys(list).map(item => {
-    //   console.log(list[item]);
-    //   return list[item]
-    // });
+    const list = this.props.colors['udTmyWG6XiTRaiN6Jo18RB4gdZl2'] || {};
+    const arr = Object.keys(this.props.colors['udTmyWG6XiTRaiN6Jo18RB4gdZl2']).map(item => {
+      return list[item]
+    });
 
-    const rgbList = this.props.colors[this.props.user.id] || {};
-
-    console.log(rgbList);
     return (
       <View style={styles.container}>
         <FlatList
-          data={rgbList}
+          data={arr}
           keyExtractor={this._keyExtractor}
           renderItem={
             ({item}) => {
