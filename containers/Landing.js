@@ -18,8 +18,6 @@ class Landing extends Component {
 
   // calling this function will navigate to the users colors page
   savedColors() {
-
-    console.log('SAVEDCOLORS', this.props);
     if(!this.props.user.loggedIn) {
       this.props.navigation.navigate('SignIn');
     } else {
@@ -33,8 +31,6 @@ class Landing extends Component {
   }
 
   render() {
-
-    console.log(this.props);
     return (
       <ColorPicker 
         hideRgbValues
@@ -49,7 +45,6 @@ class Landing extends Component {
 }
 
 const mapStateToProps = (state) => {
-  console.log('the state from firebase is', state);
   return {
     user: state.currentUserReducer
   }
@@ -57,7 +52,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch, colorArr) => {
   return {
-    saveColorDispatch: (colorArr) => dispatch(saveColorAction(colorArr))
+    saveColorDispatch: (colorArr) => dispatch(saveColorAction('udTmyWG6XiTRaiN6Jo18RB4gdZl2', colorArr))
   }
 }
 

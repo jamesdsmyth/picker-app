@@ -1,6 +1,14 @@
-export function saveColorAction(data) {
+export function saveColorAction(id, data) {
   return {
     type: 'SAVE_COLOR',
+    id,
+    colorsArray: data
+  }
+}
+
+export function getColorsAction(data) {
+  return {
+    type: 'GET_FIREBASE_COLORS',
     data
   }
 }
@@ -29,19 +37,14 @@ export function signInAction(data) {
 }
 
 export function signInSuccessAction(data) {
-
-
-  console.log(data, 'SIGN IN SUCCESS');
   return {
     type: 'SIGN_IN_SUCCESS',
-    email: data.user.email
+    email: data.user.email,
+    id: data.user.uid
   }
 }
 
 export function signUpAction(data) {
-
-  console.log('returned');
-  
   return {
     type: 'SIGN_UP',
     data: {
