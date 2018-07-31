@@ -1,3 +1,2 @@
-- complete firebase saga call.
-- add action to add new color to firebase
-- colors page - list all colors
+- need to restyle the sign in and log in page
+- save color needs to show an alert when saved
