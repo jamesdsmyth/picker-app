@@ -63,7 +63,11 @@ const styles = StyleSheet.create({
   },
   savedColor: {
     flex: 1,
-    width: window.width
+    width: window.width,
+    paddingTop: 20,
+    paddingBottom: 20,
+    justifyContent: 'center',
+    alignItems: 'center'
   }
 });
 

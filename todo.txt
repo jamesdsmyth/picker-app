@@ -1,2 +1,4 @@
 - need to restyle the sign in and log in page
 - save color needs to show an alert when saved
+
+- sign in event

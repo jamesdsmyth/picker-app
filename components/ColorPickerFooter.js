@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, TouchableHighlight } from 'react-native';
+import persistorStore from '../reducers/combinedReducers';
 import PropTypes from 'prop-types';
 import styles from '../styles/styles';
 
@@ -16,6 +17,14 @@ const ColorPickerFooter = ({ bgColor, savedColors, saveColor }) => (
     >
       <Text style={styles.colorCodeSectionSaveText}>
         Colors
+      </Text>
+    </TouchableHighlight>
+    <TouchableHighlight
+      style={[styles.btn, styles.colorCodeSectionColors]}
+      onPress={() => persistorStore.persistor.purge()}
+    >
+      <Text style={styles.colorCodeSectionSaveText}>
+        Purge
       </Text>
     </TouchableHighlight>
     <TouchableHighlight

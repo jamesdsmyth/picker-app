@@ -8,15 +8,20 @@ import { getColorsAction } from '../actions/actions';
 class SavedColors extends Component {
   constructor(props) {
     super(props);
-
   }
 
   componentWillMount() {
     this.props.getColorsDispatch('udTmyWG6XiTRaiN6Jo18RB4gdZl2');
   }
 
-  // react native function that creates a key for you
-  _keyExtractor = (item, index) => item.id;
+  // creating a unique ID here using the RGB and the index of the list item
+  createId = (item, index) => {
+    const str = item.rgb.toString();
+    const arr = str.split(',');
+    const id = arr.join('');
+    const str2 = id + index;
+    return str2.toString();
+  }
 
   render() {
     const list = this.props.colors['udTmyWG6XiTRaiN6Jo18RB4gdZl2'] || {};
@@ -28,7 +33,7 @@ class SavedColors extends Component {
       <View style={styles.container}>
         <FlatList
           data={arr}
-          keyExtractor={this._keyExtractor}
+          keyExtractor={this.createId}
           renderItem={
             ({item}) => {
               return (
