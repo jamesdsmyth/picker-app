@@ -1,7 +1,13 @@
 import { takeEvery, takeLatest, all, put, call } from 'redux-saga/effects';
 import firebase from '../firebase';
 import persistorStore from '../reducers/combinedReducers';
-import { getColorSuccessAction, getColorFailureAction, signInSuccessAction, signUpSuccessAction } from '../actions/actions';
+import { 
+  getColorSuccessAction, 
+  getColorFailureAction, 
+  signInSuccessAction,
+  signInFailureAction,
+  signUpSuccessAction
+} from '../actions/actions';
 
 // getting all the colors from /colors/ snapshot
 // this looks bad but I still need to work out why snapshot is 
@@ -31,6 +37,7 @@ function* signIn(data) {
     yield put(signInSuccessAction(result));
   } catch(error) {
     console.log('this is an error', error);
+    yield put(signInFailureAction(error));
   }
 }
 

@@ -11,6 +11,7 @@ class SavedColors extends Component {
   }
 
   componentWillMount() {
+    console.log('MOUNTINGGGG');
     this.props.getColorsDispatch('udTmyWG6XiTRaiN6Jo18RB4gdZl2');
   }
 

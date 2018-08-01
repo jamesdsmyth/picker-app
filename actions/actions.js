@@ -44,6 +44,12 @@ export function signInSuccessAction(data) {
   }
 }
 
+export function signInFailureAction(data) {
+  return {
+    type: 'SIGN_IN_FAILURE'
+  }
+}
+
 export function signUpAction(data) {
   return {
     type: 'SIGN_UP',

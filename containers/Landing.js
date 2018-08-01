@@ -31,6 +31,8 @@ class Landing extends Component {
   }
 
   render() {
+
+    console.log(this.props);
     return (
       <ColorPicker 
         hideRgbValues
@@ -50,7 +52,7 @@ const mapStateToProps = (state) => {
   }
 }
 
-const mapDispatchToProps = (dispatch, colorArr) => {
+const mapDispatchToProps = (dispatch) => {
   return {
     saveColorDispatch: (colorArr) => dispatch(saveColorAction('udTmyWG6XiTRaiN6Jo18RB4gdZl2', colorArr))
   }

@@ -6,6 +6,7 @@ import createSagaMiddleware from 'redux-saga';
 import rootSaga from './sagas';
 import getColorsReducer from './getColorsReducer';
 import currentUserReducer from './currentUserReducer';
+import signInReducer from './signInReducer';
 
 // persistant storage for the store when closing and reopening an app
 // blacklisting navigation as we do not need to persist this.
@@ -21,7 +22,8 @@ const sagaMiddleware = createSagaMiddleware();
 // combine all our reducers
 const combinedReducers = combineReducers({
   getColorsReducer,
-  currentUserReducer
+  currentUserReducer,
+  signInReducer
 });
 
 const persistedReducer = persistReducer(persistConfig, combinedReducers)

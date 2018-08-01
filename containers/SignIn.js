@@ -64,6 +64,8 @@ class SignIn extends Component {
   }
 
   render() {
+
+    console.log(this.props);
     return (
       <View style={styles.container}>
         <Form
@@ -71,6 +73,10 @@ class SignIn extends Component {
           type={signInFields}
           options={options}
         />
+        {
+          this.props.signIn.loginFailure &&
+            <Text>Your email address or password was incorrect</Text>
+        }
         <TouchableHighlight 
           style={styles.button}
           onPress={this.signIn}>
@@ -94,7 +100,8 @@ class SignIn extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    user: state.currentUserReducer
+    user: state.currentUserReducer,
+    signIn: state.signInReducer
   }
 }
 
