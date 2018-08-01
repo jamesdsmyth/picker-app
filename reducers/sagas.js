@@ -17,15 +17,21 @@ function* getColors(data) {
 }
 
 function* signIn(data) {
-  const auth = firebase.auth();
-  const result = yield call(
+  try {
+    const auth = firebase.auth();
+    const result = yield call(
     [auth, auth.signInWithEmailAndPassword],
     data.data.email,
     data.data.password
   )
 
-  // dispatching this action will redirect the logged in user to their colors list
-  yield put(signInSuccessAction(result));
+    console.log('the result is', result);
+
+    // dispatching this action will redirect the logged in user to their colors list
+    yield put(signInSuccessAction(result));
+  } catch(error) {
+    console.log('this is an error', error);
+  }
 }
 
 // sign up will also sign the user in by calling yield signIn(data);
@@ -76,6 +82,7 @@ export function* watchSaveColor(data) {
 }
 
 export function* watchSignIn(data) {
+  console.log('signing in with this data', data);
   yield signIn(data);
 }
 
@@ -87,6 +94,6 @@ export function* watchSignUp(data) {
 export default function* rootSaga() {
   yield takeEvery('GET_FIREBASE_COLORS', watchGetColors);
   yield takeEvery('SAVE_COLOR', watchSaveColor);
-  yield takeLatest('SIGN_IN', watchSignIn);
-  yield takeLatest('SIGN_UP', watchSignUp);
+  yield takeEvery('SIGN_IN', watchSignIn);
+  yield takeEvery('SIGN_UP', watchSignUp);
 }
