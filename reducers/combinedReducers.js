@@ -7,6 +7,7 @@ import rootSaga from './sagas';
 import getColorsReducer from './getColorsReducer';
 import currentUserReducer from './currentUserReducer';
 import signInReducer from './signInReducer';
+import saveColorReducer from './saveColorReducer';
 
 // persistant storage for the store when closing and reopening an app
 // blacklisting navigation as we do not need to persist this.
@@ -23,7 +24,8 @@ const sagaMiddleware = createSagaMiddleware();
 const combinedReducers = combineReducers({
   getColorsReducer,
   currentUserReducer,
-  signInReducer
+  signInReducer,
+  saveColorReducer
 });
 
 const persistedReducer = persistReducer(persistConfig, combinedReducers)

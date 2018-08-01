@@ -6,6 +6,13 @@ export function saveColorAction(id, data) {
   }
 }
 
+export function tempSaveColorAction(data) {
+  return {
+    type: 'TEMP_SAVE_COLOR',
+    colorsArray: data
+  }
+}
+
 export function getColorsAction(data) {
   return {
     type: 'GET_FIREBASE_COLORS',

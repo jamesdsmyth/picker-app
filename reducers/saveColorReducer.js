@@ -1,13 +1,12 @@
-// const saveColorReducer = (state = {}, action) => {
+const saveColorReducer = (state = {}, action) => {
 
-//   console.log(action)
-//   switch(action.type) {
-//     case 'SAVE_COLOR':
-//       return action.data;
+  switch(action.type) {
+    case 'TEMP_SAVE_COLOR':
+      return action.data;
 
-//     default:
-//       return state;
-//   }
-// }
+    default:
+      return state;
+  }
+}
 
-// export default saveColorReducer;
+export default saveColorReducer;

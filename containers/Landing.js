@@ -31,20 +31,17 @@ class Landing extends Component {
       this.props.saveColorDispatch(this.props.user.id, colorArr);
     } else {
       this.props.navigation.navigate('SignIn');
+      this.props.tempSaveColorDispatch(colorArr);
     }
   }
 
   render() {
-
-    console.log(this.props);
     return (
       <ColorPicker 
         hideRgbValues
-        // height={400}
         returnColor={this.getColor}
         savedColors={this.savedColors}
         saveColor={this.saveColor}
-        // color={[0, 25, 134]}
       />
     )
   }
@@ -57,10 +54,9 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => {
-
-  console.log('mappinggg', this.props);
   return {
-    saveColorDispatch: (id, colorArr) => dispatch(saveColorAction(id, colorArr))
+    saveColorDispatch: (id, colorArr) => dispatch(saveColorAction(id, colorArr)),
+    tempSaveColorDispatch: (colorArr) => dispatch(tempSaveColorAction(colorArr))
   }
 }
 

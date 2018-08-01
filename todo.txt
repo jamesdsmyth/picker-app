@@ -1,4 +1,7 @@
 - need to restyle the sign in and log in page
 - save color needs to show an alert when saved
 
-- sign in event
+- tempSaveColorDispatch: (colorArr) => dispatch(tempSaveColorAction(colorArr))
+
+is dispatching an action that should temp save the array. We need to on
+sign in or sign up save this properly.
