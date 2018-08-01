@@ -63,6 +63,8 @@ function* signUp(data) {
 }
 
 function* saveColor(data) {
+
+  console.log(data);
   // Get a key for a new color
   const key = firebase.database().ref().child('colors').push().key;
 

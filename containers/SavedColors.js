@@ -11,8 +11,8 @@ class SavedColors extends Component {
   }
 
   componentWillMount() {
-    console.log('MOUNTINGGGG');
-    this.props.getColorsDispatch('udTmyWG6XiTRaiN6Jo18RB4gdZl2');
+    // this.props.getColorsDispatch('udTmyWG6XiTRaiN6Jo18RB4gdZl2');
+    this.props.getColorsDispatch(this.props.user.id);
   }
 
   // creating a unique ID here using the RGB and the index of the list item
@@ -25,8 +25,11 @@ class SavedColors extends Component {
   }
 
   render() {
-    const list = this.props.colors['udTmyWG6XiTRaiN6Jo18RB4gdZl2'] || {};
-    const arr = Object.keys(this.props.colors['udTmyWG6XiTRaiN6Jo18RB4gdZl2']).map(item => {
+    console.log(this.props);
+    // const list = this.props.colors['udTmyWG6XiTRaiN6Jo18RB4gdZl2'] || {};
+    const list = this.props.colors[this.props.user.id] || {};
+
+    const arr = Object.keys(list).map(item => {
       return list[item]
     });
 

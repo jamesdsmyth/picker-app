@@ -18,16 +18,20 @@ class Landing extends Component {
 
   // calling this function will navigate to the users colors page
   savedColors() {
-    if(!this.props.user.loggedIn) {
-      this.props.navigation.navigate('SignIn');
-    } else {
+    if(this.props.user.loggedIn) {
       this.props.navigation.navigate('SavedColors');
+    } else {
+      this.props.navigation.navigate('SignIn');
     }
   }
 
-  //  calling this function will dispatch an action that will write the color to firebase
+  // calling this function will dispatch an action that will write the color to firebase
   saveColor(colorArr) {
-    this.props.saveColorDispatch(colorArr);
+    if(this.props.user.loggedIn) {
+      this.props.saveColorDispatch(this.props.user.id, colorArr);
+    } else {
+      this.props.navigation.navigate('SignIn');
+    }
   }
 
   render() {
@@ -53,8 +57,10 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => {
+
+  console.log('mappinggg', this.props);
   return {
-    saveColorDispatch: (colorArr) => dispatch(saveColorAction('udTmyWG6XiTRaiN6Jo18RB4gdZl2', colorArr))
+    saveColorDispatch: (id, colorArr) => dispatch(saveColorAction(id, colorArr))
   }
 }
 
