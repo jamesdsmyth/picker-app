@@ -58,13 +58,14 @@ export function signInFailureAction(data) {
   }
 }
 
-export function signUpAction(data) {
+export function signUpAction(formData, tempColor) {
   return {
     type: 'SIGN_UP',
     data: {
-      name: data.name,
-      email: data.email,
-      password: data.password
+      name: formData.name,
+      email: formData.email,
+      password: formData.password,
+      colorsArray: tempColor
     }
   }
 }

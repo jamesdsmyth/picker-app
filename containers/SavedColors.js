@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, FlatList } from 'react-native';
+import { View, Text, FlatList, BackHandler } from 'react-native';
 import styles from '../styles/styles';
 import { connect } from 'react-redux';
 
@@ -11,7 +11,6 @@ class SavedColors extends Component {
   }
 
   componentWillMount() {
-    // this.props.getColorsDispatch('udTmyWG6XiTRaiN6Jo18RB4gdZl2');
     this.props.getColorsDispatch(this.props.user.id);
   }
 
@@ -25,10 +24,7 @@ class SavedColors extends Component {
   }
 
   render() {
-    console.log(this.props);
-    // const list = this.props.colors['udTmyWG6XiTRaiN6Jo18RB4gdZl2'] || {};
     const list = this.props.colors[this.props.user.id] || {};
-
     const arr = Object.keys(list).map(item => {
       return list[item]
     });

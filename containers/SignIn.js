@@ -45,7 +45,6 @@ class SignIn extends Component {
   signIn() {
     var value = this.refs.form.getValue();
     if (value) {
-      console.log(this.props.tempColor, value);
       this.props.signInDispatch(value, this.props.tempColor);
     }
   }
@@ -53,7 +52,7 @@ class SignIn extends Component {
   signUp() {
     var value = this.refs.signUpform.getValue();
     if (value) {
-      this.props.signUpDispatch(value);
+      this.props.signUpDispatch(value, this.props.tempColor);
     }
   }
 
@@ -110,7 +109,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     signInDispatch: (formData, tempColor) => dispatch(signInAction(formData, tempColor)),
-    signUpDispatch: (formData) => dispatch(signUpAction(formData))
+    signUpDispatch: (formData, tempColor) => dispatch(signUpAction(formData, tempColor))
   }
 }
 

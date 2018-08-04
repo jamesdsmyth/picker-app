@@ -23,7 +23,6 @@ function* getColors(data) {
 }
 
 function* signIn(data) {
-
   console.log(data);
   try {
     const auth = firebase.auth();
@@ -38,7 +37,8 @@ function* signIn(data) {
     // dispatching this action will redirect the logged in user to their colors list
     yield put(signInSuccessAction(result));
 
-    if(data.data.colorsArray.length === 3) {
+    // we will save the color if the user has signed up/signed in after clicking 'save'
+    if(data.data.colorsArray) {
       data.data.id = result.user.uid;
       yield saveColor(data.data);
     }
@@ -85,9 +85,9 @@ function* saveColor(data) {
   updates[`/colors/${data.id}/${key}`] = obj;
   firebase.database().ref().update(updates).then(value => {
     console.log('then we will navigate to saved colors');
-}).catch((error) => {
-    console.log(error);
-});
+  }).catch((error) => {
+      console.log(error);
+  });
 }
 
 export function* watchGetColors(data) {
