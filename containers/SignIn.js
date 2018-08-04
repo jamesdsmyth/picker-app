@@ -45,7 +45,8 @@ class SignIn extends Component {
   signIn() {
     var value = this.refs.form.getValue();
     if (value) {
-      this.props.signInDispatch(value);
+      console.log(this.props.tempColor, value);
+      this.props.signInDispatch(value, this.props.tempColor);
     }
   }
 
@@ -101,13 +102,14 @@ class SignIn extends Component {
 const mapStateToProps = (state) => {
   return {
     user: state.currentUserReducer,
-    signIn: state.signInReducer
+    signIn: state.signInReducer,
+    tempColor: state.saveColorReducer
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    signInDispatch: (formData) => dispatch(signInAction(formData)),
+    signInDispatch: (formData, tempColor) => dispatch(signInAction(formData, tempColor)),
     signUpDispatch: (formData) => dispatch(signUpAction(formData))
   }
 }

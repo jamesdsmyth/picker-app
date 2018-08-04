@@ -9,7 +9,7 @@ export function saveColorAction(id, data) {
 export function tempSaveColorAction(data) {
   return {
     type: 'TEMP_SAVE_COLOR',
-    colorsArray: data
+    data
   }
 }
 
@@ -33,12 +33,13 @@ export function getColorFailureAction(data) {
   }
 }
 
-export function signInAction(data) {
+export function signInAction(formData, tempColor) {
   return {
     type: 'SIGN_IN',
     data: {
-      email: data.email,
-      password: data.password
+      email: formData.email,
+      password: formData.password,
+      colorsArray: tempColor
     }
   }
 }

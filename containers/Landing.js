@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import ColorPicker from '../components/ColorPicker'
 
-import { saveColorAction } from '../actions/actions'
+import { saveColorAction, tempSaveColorAction } from '../actions/actions'
 
 class Landing extends Component {
   constructor() {

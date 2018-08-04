@@ -3,5 +3,5 @@
 
 - tempSaveColorDispatch: (colorArr) => dispatch(tempSaveColorAction(colorArr))
 
-is dispatching an action that should temp save the array. We need to on
+is dispatching an action that should temp save the array. We need it on
 sign in or sign up save this properly.

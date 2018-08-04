@@ -23,6 +23,8 @@ function* getColors(data) {
 }
 
 function* signIn(data) {
+
+  console.log(data);
   try {
     const auth = firebase.auth();
     const result = yield call(
@@ -35,6 +37,12 @@ function* signIn(data) {
 
     // dispatching this action will redirect the logged in user to their colors list
     yield put(signInSuccessAction(result));
+
+    if(data.data.colorsArray.length === 3) {
+      data.data.id = result.user.uid;
+      yield saveColor(data.data);
+    }
+    
   } catch(error) {
     console.log('this is an error', error);
     yield put(signInFailureAction(error));
