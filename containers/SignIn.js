@@ -1,7 +1,11 @@
 import React, { Component} from 'react';
 import { View, Text, TouchableHighlight } from 'react-native';
 import { connect } from 'react-redux';
-import { signInAction, signUpAction } from '../actions/actions'
+import { 
+  signInAction, 
+  signUpAction, 
+  clearSignInErrorsAction,
+  clearSignUpErrorsAction } from '../actions/actions'
 import t from 'tcomb-form-native';
 import styles from '../styles/styles';
 
@@ -64,7 +68,10 @@ class SignIn extends Component {
   toggleSignUp() {
     this.setState({
       signUpVisible: !this.state.signUpVisible
-    })
+    });
+
+    this.props.clearSignInErrorsDispatch();
+    this.props.clearSignUpErrorsDispatch();
   }
 
   // once a user is logged in, they will be redirected to their colors page
@@ -153,7 +160,9 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     signInDispatch: (formData, tempColor) => dispatch(signInAction(formData, tempColor)),
-    signUpDispatch: (formData, tempColor) => dispatch(signUpAction(formData, tempColor))
+    signUpDispatch: (formData, tempColor) => dispatch(signUpAction(formData, tempColor)),
+    clearSignInErrorsDispatch: () => dispatch(clearSignInErrorsAction()),
+    clearSignUpErrorsDispatch: () => dispatch(clearSignUpErrorsAction())
   }
 }
 

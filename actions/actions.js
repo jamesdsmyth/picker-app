@@ -83,3 +83,15 @@ export function signUpFailureAction(data) {
     data
   }
 }
+
+export function clearSignInErrorsAction() {
+  return {
+    type: 'CLEAR_SIGN_IN_ERROR_MESSAGES'
+  }
+}
+
+export function clearSignUpErrorsAction() {
+  return {
+    type: 'CLEAR_SIGN_UP_ERROR_MESSAGES'
+  }
+}

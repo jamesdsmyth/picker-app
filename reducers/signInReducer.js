@@ -4,6 +4,10 @@ const signInReducer = (state = { signInFailure: false }, action) => {
       return {
         signInFailure: true
       }
+    case 'CLEAR_SIGN_IN_ERROR_MESSAGES':
+      return {
+        signInFailure: false
+      }
 
     default:
       return state;
