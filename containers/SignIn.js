@@ -86,7 +86,7 @@ class SignIn extends Component {
             options={options}
           />
           {
-            this.props.signIn.loginFailure &&
+            this.props.signIn.signInFailure &&
               <Text>Your email address or password was incorrect</Text>
           }
           <TouchableHighlight 
@@ -99,7 +99,7 @@ class SignIn extends Component {
 
           <TouchableHighlight onPress={this.toggleSignUp}>
             <Text>
-              Create an account
+              Not got an account? Create one here
             </Text>
           </TouchableHighlight>
         </View>
@@ -112,6 +112,16 @@ class SignIn extends Component {
             type={signUpFields}
             options={options}
           />
+          {
+            this.props.signUp.signUpFailure &&
+              <View>
+                {
+                  <Text>
+                    {this.props.signUp.message}
+                  </Text>
+                }
+              </View>
+          }
           <TouchableHighlight 
             style={[styles.btn, styles.colorCodeSectionColors]}
             onPress={this.signUp}>
@@ -135,6 +145,7 @@ const mapStateToProps = (state) => {
   return {
     user: state.currentUserReducer,
     signIn: state.signInReducer,
+    signUp: state.signUpReducer,
     tempColor: state.saveColorReducer
   }
 }

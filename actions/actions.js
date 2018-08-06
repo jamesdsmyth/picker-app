@@ -76,3 +76,10 @@ export function signUpSuccessAction(data) {
     data
   }
 }
+
+export function signUpFailureAction(data) {
+  return {
+    type: 'SIGN_UP_FAILURE',
+    data
+  }
+}

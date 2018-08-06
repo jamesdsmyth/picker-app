@@ -6,7 +6,8 @@ import {
   getColorFailureAction, 
   signInSuccessAction,
   signInFailureAction,
-  signUpSuccessAction
+  signUpSuccessAction,
+  signUpFailureAction
 } from '../actions/actions';
 
 // getting all the colors from /colors/ snapshot
@@ -67,6 +68,7 @@ function* signUp(data) {
     yield signIn(data);
   } catch(error) {
     console.log(error);
+    yield put(signUpFailureAction(error));
   }
 }
 

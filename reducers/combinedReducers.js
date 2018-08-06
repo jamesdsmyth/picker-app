@@ -7,6 +7,7 @@ import rootSaga from './sagas';
 import getColorsReducer from './getColorsReducer';
 import currentUserReducer from './currentUserReducer';
 import signInReducer from './signInReducer';
+import signUpReducer from './signUpReducer';
 import saveColorReducer from './saveColorReducer';
 
 // persistant storage for the store when closing and reopening an app
@@ -25,6 +26,7 @@ const combinedReducers = combineReducers({
   getColorsReducer,
   currentUserReducer,
   signInReducer,
+  signUpReducer,
   saveColorReducer
 });
 
