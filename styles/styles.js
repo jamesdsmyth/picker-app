@@ -56,6 +56,11 @@ const styles = StyleSheet.create({
     color: '#ffffff',
     textAlign: 'center'
   },
+  formMessage: {
+    marginTop: 10,
+    color: '#4980eb',
+    textAlign: 'center'
+  },
 
   // ColorPicker component
   colorPickerContainer: {

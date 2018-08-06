@@ -51,6 +51,10 @@ class SignIn extends Component {
     this.toggleSignUp = this.toggleSignUp.bind(this);
   }
 
+  static navigationOptions = {
+    title: 'Sign In / Sign Up'
+  }
+
   signIn() {
     var value = this.refs.form.getValue();
     if (value) {
@@ -105,7 +109,7 @@ class SignIn extends Component {
           </TouchableHighlight>
 
           <TouchableHighlight onPress={this.toggleSignUp}>
-            <Text>
+            <Text style={styles.formMessage}>
               Not got an account? Create one here
             </Text>
           </TouchableHighlight>
@@ -137,7 +141,7 @@ class SignIn extends Component {
             </Text>
           </TouchableHighlight>
           <TouchableHighlight onPress={this.toggleSignUp}>
-            <Text>
+            <Text style={styles.formMessage}>
               Already have an account? Sign in here
             </Text>
           </TouchableHighlight>

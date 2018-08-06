@@ -10,6 +10,10 @@ class SavedColors extends Component {
     super(props);
   }
 
+  static navigationOptions = {
+    title: 'Your Saved Colors'
+  }
+
   componentWillMount() {
     this.props.getColorsDispatch(this.props.user.id);
   }
