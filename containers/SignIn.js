@@ -36,10 +36,15 @@ var options = {
 
 class SignIn extends Component {
   constructor() {
-    super()
+    super();
+
+    this.state = {
+      signUpVisible: false
+    }
 
     this.signIn = this.signIn.bind(this);
     this.signUp = this.signUp.bind(this);
+    this.toggleSignUp = this.toggleSignUp.bind(this);
   }
 
   signIn() {
@@ -56,6 +61,12 @@ class SignIn extends Component {
     }
   }
 
+  toggleSignUp() {
+    this.setState({
+      signUpVisible: !this.state.signUpVisible
+    })
+  }
+
   // once a user is logged in, they will be redirected to their colors page
   componentWillReceiveProps(newProps) {
     if(newProps.user.loggedIn) {
@@ -64,35 +75,57 @@ class SignIn extends Component {
   }
 
   render() {
-
-    console.log(this.props);
     return (
-      <View style={styles.container}>
-        <Form
-          ref='form'
-          type={signInFields}
-          options={options}
-        />
-        {
-          this.props.signIn.loginFailure &&
-            <Text>Your email address or password was incorrect</Text>
-        }
-        <TouchableHighlight 
-          style={styles.button}
-          onPress={this.signIn}>
-          <Text style={styles.buttonText}>Save</Text>
-        </TouchableHighlight>
+      <View style={styles.signInContainer}>
+      {
+        !this.state.signUpVisible &&
+        <View>
+          <Form
+            ref='form'
+            type={signInFields}
+            options={options}
+          />
+          {
+            this.props.signIn.loginFailure &&
+              <Text>Your email address or password was incorrect</Text>
+          }
+          <TouchableHighlight 
+            style={[styles.btn, styles.colorCodeSectionColors]}
+            onPress={this.signIn}>
+            <Text style={styles.colorCodeSectionSaveText}>
+              Login
+            </Text>
+          </TouchableHighlight>
 
-        <Form
-          ref='signUpform'
-          type={signUpFields}
-          options={options}
-        />
-        <TouchableHighlight 
-          style={styles.button}
-          onPress={this.signUp}>
-          <Text style={styles.buttonText}>Create</Text>
-        </TouchableHighlight>
+          <TouchableHighlight onPress={this.toggleSignUp}>
+            <Text>
+              Create an account
+            </Text>
+          </TouchableHighlight>
+        </View>
+      }
+      {
+        this.state.signUpVisible &&
+        <View>
+          <Form
+            ref='signUpform'
+            type={signUpFields}
+            options={options}
+          />
+          <TouchableHighlight 
+            style={[styles.btn, styles.colorCodeSectionColors]}
+            onPress={this.signUp}>
+            <Text style={styles.colorCodeSectionSaveText}>
+              Create account
+            </Text>
+          </TouchableHighlight>
+          <TouchableHighlight onPress={this.toggleSignUp}>
+            <Text>
+              Already have an account? Sign in here
+            </Text>
+          </TouchableHighlight>
+        </View>
+      }
       </View>
     )
   }

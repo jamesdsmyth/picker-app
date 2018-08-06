@@ -10,6 +10,15 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     width: window.width
   },
+  signInContainer: {
+    flex: 10,
+    flexDirection: 'column',
+    backgroundColor: '#ffffff',
+    justifyContent: 'center',
+    width: window.width,
+    paddingLeft: 10,
+    paddingRight: 10
+  },
   colorCodeSection: {
     position: 'absolute',
     display: 'flex',
@@ -44,7 +53,8 @@ const styles = StyleSheet.create({
   },
   colorCodeSectionSaveText: {
     fontSize: 20,
-    color: '#ffffff'
+    color: '#ffffff',
+    textAlign: 'center'
   },
 
   // ColorPicker component
