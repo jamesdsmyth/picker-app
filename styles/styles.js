@@ -31,12 +31,14 @@ const styles = StyleSheet.create({
     width: window.width,
     paddingLeft: 10,
     paddingRight: 10,
-    borderTopWidth: 1,
-    borderColor: '#000000',
-    backgroundColor: '#ffffff'
+    backgroundColor: 'rgba(0, 0, 0, 0.2)'
+  },
+  colorCodeButtonSection: {
+    display: 'flex'
   },
   colorCodeSectionText: {
-    fontSize: 20
+    fontSize: 20,
+    color: '#ffffff'
   },
   btn: {
     borderRadius: 4,

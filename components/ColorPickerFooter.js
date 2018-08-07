@@ -11,30 +11,32 @@ const ColorPickerFooter = ({ bgColor, savedColors, saveColor }) => (
       {bgColor[1]}{' ,  '} 
       {bgColor[2]}
     </Text>
-    <TouchableHighlight
-      style={[styles.btn, styles.colorCodeSectionColors]}
-      onPress={() => savedColors()}
-    >
-      <Text style={styles.colorCodeSectionSaveText}>
-        Colors
-      </Text>
-    </TouchableHighlight>
-    <TouchableHighlight
-      style={[styles.btn, styles.colorCodeSectionColors]}
-      onPress={() => persistorStore.persistor.purge()}
-    >
-      <Text style={styles.colorCodeSectionSaveText}>
-        Purge
-      </Text>
-    </TouchableHighlight>
-    <TouchableHighlight
-      style={[styles.btn, styles.colorCodeSectionSave]}
-      onPress={() => saveColor(bgColor)}
-    >
-      <Text style={styles.colorCodeSectionSaveText}>
-        Save
-      </Text>
-    </TouchableHighlight>
+    <View style={styles.colorCodeButtonSection}>
+      <TouchableHighlight
+        style={[styles.btn, styles.colorCodeSectionColors]}
+        onPress={() => savedColors()}
+      >
+        <Text style={styles.colorCodeSectionSaveText}>
+          Colors
+        </Text>
+      </TouchableHighlight>
+      {/* <TouchableHighlight
+        style={[styles.btn, styles.colorCodeSectionColors]}
+        onPress={() => persistorStore.persistor.purge()}
+      >
+        <Text style={styles.colorCodeSectionSaveText}>
+          Purge
+        </Text>
+      </TouchableHighlight> */}
+      <TouchableHighlight
+        style={[styles.btn, styles.colorCodeSectionSave]}
+        onPress={() => saveColor(bgColor)}
+      >
+        <Text style={styles.colorCodeSectionSaveText}>
+          Save
+        </Text>
+      </TouchableHighlight>
+    </View>
   </View>
 )
 
