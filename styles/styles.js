@@ -34,7 +34,8 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(0, 0, 0, 0.2)'
   },
   colorCodeButtonSection: {
-    display: 'flex'
+    display: 'flex',
+    flexDirection: 'row'
   },
   colorCodeSectionText: {
     fontSize: 20,
@@ -48,7 +49,8 @@ const styles = StyleSheet.create({
     paddingRight: 10
   },
   colorCodeSectionSave: {
-    backgroundColor: '#1db954'
+    backgroundColor: '#1db954',
+    marginLeft: 10
   },
   colorCodeSectionColors: {
     backgroundColor: '#4980eb'
@@ -73,7 +75,7 @@ const styles = StyleSheet.create({
     width: 50,
     height: 50,
     borderRadius: 50,
-    backgroundColor: '#ffffff',
+    backgroundColor: 'rgba(255, 255, 255, 0.5)',
     position: 'absolute',
     borderWidth: 1,
     borderColor: '#cccccc'
