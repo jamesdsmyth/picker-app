@@ -53,7 +53,7 @@ class SavedColors extends Component {
                         { 'backgroundColor': `rgb(${item.rgb[0]}, ${item.rgb[1]}, ${item.rgb[2]})` }
                       ]
                     }>
-                      <Text style={styles.item}>{item.rgb[0]}, {item.rgb[1]}, {item.rgb[2]}</Text>
+                      <Text style={styles.savedColorText}>{item.rgb[0]}, {item.rgb[1]}, {item.rgb[2]}</Text>
                     </View>
                   )
                 }   

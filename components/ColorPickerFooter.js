@@ -7,8 +7,8 @@ import styles from '../styles/styles';
 const ColorPickerFooter = ({ bgColor, savedColors, saveColor }) => (
   <View style={styles.colorCodeSection}>
     <Text style={styles.colorCodeSectionText}>
-      {bgColor[0]}{' ,  '}
-      {bgColor[1]}{' ,  '} 
+      {bgColor[0]}{' , '}
+      {bgColor[1]}{' , '} 
       {bgColor[2]}
     </Text>
     <View style={styles.colorCodeButtonSection}>
