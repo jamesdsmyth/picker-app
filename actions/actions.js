@@ -6,6 +6,18 @@ export function saveColorAction(id, data) {
   }
 }
 
+export function saveColorSuccessAction() {
+  return {
+    type: 'SAVE_COLOR_SUCCESS'
+  }
+}
+
+export function saveColorFailureAction() {
+  return {
+    type: 'SAVE_COLOR_FAILURE'
+  }
+}
+
 export function tempSaveColorAction(data) {
   return {
     type: 'TEMP_SAVE_COLOR',

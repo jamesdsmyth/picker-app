@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { View } from 'react-native';
 import { connect } from 'react-redux';
 import ColorPicker from '../components/ColorPicker'
 
@@ -37,12 +38,17 @@ class Landing extends Component {
 
   render() {
     return (
-      <ColorPicker 
-        hideRgbValues
-        returnColor={this.getColor}
-        savedColors={this.savedColors}
-        saveColor={this.saveColor}
-      />
+      // <View>
+      //   <View>
+      //     hiii
+      //   </View>
+        <ColorPicker 
+          hideRgbValues
+          returnColor={this.getColor}
+          savedColors={this.savedColors}
+          saveColor={this.saveColor}
+        />
+      // </View>
     )
   }
 }

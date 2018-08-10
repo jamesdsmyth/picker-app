@@ -3,7 +3,9 @@ import firebase from '../firebase';
 import persistorStore from '../reducers/combinedReducers';
 import { 
   getColorSuccessAction, 
-  getColorFailureAction, 
+  getColorFailureAction,
+  saveColorSuccessAction,
+  saveColorFailureAction,
   signInSuccessAction,
   signInFailureAction,
   signUpSuccessAction,
@@ -24,16 +26,13 @@ function* getColors(data) {
 }
 
 function* signIn(data) {
-  console.log(data);
   try {
     const auth = firebase.auth();
     const result = yield call(
-    [auth, auth.signInWithEmailAndPassword],
-    data.data.email,
-    data.data.password
-  )
-
-    console.log('the result is', result);
+      [auth, auth.signInWithEmailAndPassword],
+      data.data.email,
+      data.data.password
+    )
 
     // dispatching this action will redirect the logged in user to their colors list
     yield put(signInSuccessAction(result));
@@ -83,11 +82,19 @@ function* saveColor(data) {
   // add the color to the list /colors/
   let updates = {};
   updates[`/colors/${data.id}/${key}`] = obj;
-  firebase.database().ref().update(updates).then(value => {
-    console.log('then we will navigate to saved colors');
-  }).catch((error) => {
-      console.log(error);
-  });
+
+  try {
+    const auth = firebase.database().ref();
+    const result = yield call(
+      [auth, auth.update],
+      updates
+    )
+
+    yield put(saveColorSuccessAction())
+
+  } catch(error) {
+    yield put(saveColorFailureAction(error))
+  }
 }
 
 export function* watchGetColors(data) {
@@ -99,7 +106,6 @@ export function* watchSaveColor(data) {
 }
 
 export function* watchSignIn(data) {
-  console.log('signing in with this data', data);
   yield signIn(data);
 }
 
