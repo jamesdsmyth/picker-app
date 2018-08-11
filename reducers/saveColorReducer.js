@@ -1,11 +1,5 @@
-const saveColorReducer = (state = {}, action) => {
-
-  console.log(action);
-
+const saveColorReducer = (state = [], action) => {
   switch(action.type) {
-   
-
-
     case 'TEMP_SAVE_COLOR':
       return action.data;
 

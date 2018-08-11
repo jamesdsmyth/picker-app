@@ -42,7 +42,7 @@ function* signIn(data) {
     yield put(signInSuccessAction(result));
 
     // we will save the color if the user has signed up/signed in after clicking 'save'
-    if(data.data.colorsArray) {
+    if(data.data.colorsArray.length === 3) {
       yield saveColor(data.data);
     }
     
@@ -125,6 +125,7 @@ function* saveColor(data) {
     );
 
     yield put(saveColorSuccessAction());
+    alert('Color saved');
   } catch(error) {
     yield put(saveColorFailureAction(error))
   }

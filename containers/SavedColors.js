@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, FlatList, BackHandler } from 'react-native';
+import { View, Text, FlatList } from 'react-native';
 import styles from '../styles/styles';
 import { connect } from 'react-redux';
 
@@ -8,6 +8,8 @@ import { getColorsAction } from '../actions/actions';
 class SavedColors extends Component {
   constructor(props) {
     super(props);
+
+    this.handleBackButton = this.handleBackButton.bind(this);
   }
 
   static navigationOptions = {
@@ -17,6 +19,7 @@ class SavedColors extends Component {
   componentWillMount() {
     this.props.getColorsDispatch(this.props.user.uid);
   }
+
 
   // creating a unique ID here using the RGB and the index of the list item
   createId = (item, index) => {
@@ -33,6 +36,8 @@ class SavedColors extends Component {
       return list[item]
     });
 
+    const descendingArr = arr.reverse();
+
     return (
       <View style={styles.container}>
         {/* <Text style={styles.savedColorsTitle}>Hi {this.props.user.name},</Text>
@@ -42,7 +47,7 @@ class SavedColors extends Component {
             <Text>Fetching your colors</Text>
             :
             <FlatList
-              data={arr}
+              data={descendingArr}
               keyExtractor={this.createId}
               renderItem={
                 ({item}) => {
@@ -54,7 +59,7 @@ class SavedColors extends Component {
                         { 'backgroundColor': `rgb(${item.rgb[0]}, ${item.rgb[1]}, ${item.rgb[2]})` }
                       ]
                     }>
-                      <Text style={styles.savedColorText}>{item.rgb[0]}, {item.rgb[1]}, {item.rgb[2]}</Text>
+                      <Text style={styles.savedColorText}>RGB {item.rgb[0]}, {item.rgb[1]}, {item.rgb[2]}</Text>
                     </View>
                   )
                 }   
