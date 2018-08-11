@@ -3,6 +3,7 @@ import { View, Animated, Dimensions, PanResponder } from 'react-native';
 import PropTypes from 'prop-types';
 import styles from '../styles/styles';
 import ColorPickerFooter from './ColorPickerFooter';
+import { rgbToHexConversion } from '../utils/colorConversion';
 
 class ColorPicker extends Component {
   constructor(props) {
@@ -15,12 +16,16 @@ class ColorPicker extends Component {
         three: new Animated.ValueXY()
       },
       bgColor: [255, 255, 255],
+      hexColor: '#FFFFFF',
       height: Dimensions.get('window').height - 150,
       boundaryTop: 50,
       responders: new Array(3), // we populate this array using PanResponder.create() function
       hideRgbValues: false,
-      initialised: false
+      initialised: false,
+      showRGBText: true
     }
+
+    this.toggleColorText = this.toggleColorText.bind(this);
   }
 
   // here we can set up the panhandlers before render
@@ -77,8 +82,11 @@ class ColorPicker extends Component {
     this.state.pan.three.setOffset({ x: 0, y: posY2 });
     this.state.pan.three.flattenOffset();
 
+    const hexColor = rgbToHexConversion(bgColor);
+
     this.setState({
       bgColor,
+      hexColor,
       circle0Left: (width / 4) - 25,
       circle1Left: (width / 2) - 25,
       circle2Left: ((width / 4) * 3) - 25,
@@ -116,7 +124,7 @@ class ColorPicker extends Component {
           }])(e, gestureState);
   
           // now we can call the background color and change it.
-          this.updateBackgroundColor();
+          this.updateColor();
         },
 
         // on release, if the current cirlce is outside the boundaries we will
@@ -137,7 +145,7 @@ class ColorPicker extends Component {
               });
 
               selector.flattenOffset();
-              this.updateBackgroundColor();
+              this.updateColor();
             }, 0)
           } else if(gestureState.moveY < boundaryTop) {
             Animated.spring(selector, {
@@ -151,7 +159,7 @@ class ColorPicker extends Component {
               });
 
               selector.flattenOffset();
-              this.updateBackgroundColor();
+              this.updateColor();
             }, 0) 
           } else {
             selector.flattenOffset();
@@ -162,7 +170,7 @@ class ColorPicker extends Component {
   }
 
   // getting the correct RGB values using the position of each of the circles
-  updateBackgroundColor() {
+  updateColor() {
     const colors = 255;
     const h = this.state.height;
     let r = Math.round((colors / h) * this.state.circle0PosY);
@@ -175,12 +183,18 @@ class ColorPicker extends Component {
     g  = g > 255 ? 255 : g;
     b  = b > 255 ? 255 : b;
 
-    this.setState({
-      bgColor: [r, g, b]
-    });
+    const hexColor = rgbToHexConversion([r, g, b]);
 
-    // if the 'returnColor' function is passed, then we return the color
-    this.props.returnColor && this.props.returnColor([r, g, b]);
+    this.setState({
+      bgColor: [r, g, b],
+      hexColor: hexColor
+    });
+  }
+
+  toggleColorText() {
+    this.setState({
+      showRGBText: !this.state.showRGBText
+    })
   }
 
   render() {
@@ -222,13 +236,15 @@ class ColorPicker extends Component {
                   )
                 })
               }
-              
+
               {!this.state.hideRgbValues &&
-                <ColorPickerFooter 
+                <ColorPickerFooter
                   bgColor={this.state.bgColor}
-                  // hex={hex}
+                  hexColor={this.state.hexColor}
+                  toggleColorText={this.toggleColorText}
                   savedColors={this.props.savedColors}
                   saveColor={this.props.saveColor}
+                  showRGBText={this.state.showRGBText}
                 />
               }
           </View>
@@ -239,9 +255,6 @@ class ColorPicker extends Component {
 }
 
 ColorPicker.propTypes = {
-  hideRgbValues: PropTypes.bool,
-  height: PropTypes.number,
-  returnColor: PropTypes.func,
   saveColor: PropTypes.func,
   color: PropTypes.array
 }

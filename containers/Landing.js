@@ -39,17 +39,11 @@ class Landing extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
-        
+      <View style={styles.container}> 
         <ColorPicker 
-          hideRgbValues
-          returnColor={this.getColor}
           savedColors={this.savedColors}
           saveColor={this.saveColor}
         />
-        {/* <View style={styles.notification}>
-          <Text>Color Saved!</Text>
-        </View> */}
       </View>
     )
   }

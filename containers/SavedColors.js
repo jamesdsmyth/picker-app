@@ -38,8 +38,8 @@ class SavedColors extends Component {
 
     return (
       <View style={styles.container}>
-        <Text style={styles.savedColorsTitle}>Hi {this.props.user.name},</Text>
-        <Text style={styles.savedColorsSubtitle}>Here are your colors...</Text>
+        {/* <Text style={styles.savedColorsTitle}>Hi {this.props.user.name},</Text>
+        <Text style={styles.savedColorsSubtitle}>Here are your colors...</Text> */}
         {
           arr.length === 0 ?
             <Text>Fetching your colors</Text>
