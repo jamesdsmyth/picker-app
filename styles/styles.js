@@ -8,7 +8,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#ffffff',
     alignItems: 'center',
     justifyContent: 'center',
-    width: window.width
+    width: window.width,
   },
   signInContainer: {
     flex: 10,
@@ -98,6 +98,17 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'rgba(255, 255, 255, 0.5)'
+  },
+  savedColorsTitle: {
+    fontSize: 25,
+    marginTop: 20,
+    marginBottom: 5,
+    color: '#4ec965'
+  },
+  savedColorsSubtitle: {
+    fontSize: 20,
+    marginBottom: 10,
+    color: '#4f4f4f'
   }
 });
 

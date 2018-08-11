@@ -11,11 +11,12 @@ class SavedColors extends Component {
   }
 
   static navigationOptions = {
-    title: 'Your Saved Colors'
+    title: 'Your Colors'
   }
 
   componentWillMount() {
-    this.props.getColorsDispatch(this.props.user.id);
+    console.log(this.props.user)
+    this.props.getColorsDispatch(this.props.user.uid);
   }
 
   // creating a unique ID here using the RGB and the index of the list item
@@ -28,14 +29,17 @@ class SavedColors extends Component {
   }
 
   render() {
-    const list = this.props.colors[this.props.user.id] || {};
+    const list = this.props.colors || {};
+
+    console.log(list);
     const arr = Object.keys(list).map(item => {
       return list[item]
     });
 
     return (
       <View style={styles.container}>
-
+        <Text style={styles.savedColorsTitle}>Hi {this.props.user.name},</Text>
+        <Text style={styles.savedColorsSubtitle}>Here are your colors...</Text>
         {
           arr.length === 0 ?
             <Text>Fetching your colors</Text>
@@ -74,7 +78,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getColorsDispatch: (id) => dispatch(getColorsAction(id))
+    getColorsDispatch: (uid) => dispatch(getColorsAction(uid))
   }
 }
 

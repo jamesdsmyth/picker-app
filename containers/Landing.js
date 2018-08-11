@@ -30,7 +30,7 @@ class Landing extends Component {
   // calling this function will dispatch an action that will write the color to firebase
   saveColor(colorArr) {
     if(this.props.user.loggedIn) {
-      this.props.saveColorDispatch(this.props.user.id, colorArr);
+      this.props.saveColorDispatch(this.props.user.uid, colorArr);
     } else {
       this.props.navigation.navigate('SignIn');
       this.props.tempSaveColorDispatch(colorArr);
@@ -47,9 +47,9 @@ class Landing extends Component {
           savedColors={this.savedColors}
           saveColor={this.saveColor}
         />
-        <View style={styles.notification}>
+        {/* <View style={styles.notification}>
           <Text>Color Saved!</Text>
-        </View>
+        </View> */}
       </View>
     )
   }
@@ -63,7 +63,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    saveColorDispatch: (id, colorArr) => dispatch(saveColorAction(id, colorArr)),
+    saveColorDispatch: (uid, colorArr) => dispatch(saveColorAction(uid, colorArr)),
     tempSaveColorDispatch: (colorArr) => dispatch(tempSaveColorAction(colorArr))
   }
 }

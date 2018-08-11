@@ -1,7 +1,7 @@
-export function saveColorAction(id, data) {
+export function saveColorAction(uid, data) {
   return {
     type: 'SAVE_COLOR',
-    id,
+    uid,
     colorsArray: data
   }
 }
@@ -45,6 +45,13 @@ export function getColorFailureAction(data) {
   }
 }
 
+export function createUserProfileSuccessAction(data) {
+  return {
+    type: 'GET_PROFILE_SUCCESS',
+    name: data.data.name
+  }
+}
+
 export function signInAction(formData, tempColor) {
   return {
     type: 'SIGN_IN',
@@ -60,7 +67,7 @@ export function signInSuccessAction(data) {
   return {
     type: 'SIGN_IN_SUCCESS',
     email: data.user.email,
-    id: data.user.uid
+    uid: data.user.uid
   }
 }
 

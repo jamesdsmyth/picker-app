@@ -1,16 +1,21 @@
 import React from 'react';
 import { View, Text, TouchableHighlight } from 'react-native';
+import HeartSVG from '../assets/HeartSVG'
 import persistorStore from '../reducers/combinedReducers';
 import PropTypes from 'prop-types';
 import styles from '../styles/styles';
 
-const ColorPickerFooter = ({ bgColor, savedColors, saveColor }) => (
+const ColorPickerFooter = ({ bgColor, hex, savedColors, saveColor }) => (
   <View style={styles.colorCodeSection}>
     <Text style={styles.colorCodeSectionText}>
       {bgColor[0]}{' , '}
       {bgColor[1]}{' , '} 
       {bgColor[2]}
     </Text>
+    <Text style={styles.colorCodeSectionText}>
+      {hex}
+    </Text>
+    <HeartSVG />
     <View style={styles.colorCodeButtonSection}>
       <TouchableHighlight
         style={[styles.btn, styles.colorCodeSectionColors]}
@@ -19,15 +24,16 @@ const ColorPickerFooter = ({ bgColor, savedColors, saveColor }) => (
         <Text style={styles.colorCodeSectionSaveText}>
           Colors
         </Text>
+        
       </TouchableHighlight>
-      <TouchableHighlight
+      {/* <TouchableHighlight
         style={[styles.btn, styles.colorCodeSectionColors]}
         onPress={() => persistorStore.persistor.purge()}
       >
         <Text style={styles.colorCodeSectionSaveText}>
           Purge
         </Text>
-      </TouchableHighlight>
+      </TouchableHighlight> */}
       <TouchableHighlight
         style={[styles.btn, styles.colorCodeSectionSave]}
         onPress={() => saveColor(bgColor)}

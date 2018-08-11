@@ -6,6 +6,7 @@ import {
   getColorFailureAction,
   saveColorSuccessAction,
   saveColorFailureAction,
+  createUserProfileSuccessAction,
   signInSuccessAction,
   signInFailureAction,
   signUpSuccessAction,
@@ -16,9 +17,12 @@ import {
 // this looks bad but I still need to work out why snapshot is 
 // not returned properly when we organise this request the 'saga' way
 function* getColors(data) {
-  const itemsRef = yield firebase.database().ref(`/colors`);
+  const itemsRef = yield firebase.database().ref(`/colors/${data.data}`);
+
+  console.log(data);
   
   itemsRef.on('value', (snapshot) => {
+    console.log(snapshot.val());
     persistorStore.store.dispatch(getColorSuccessAction(snapshot.val()));
   }, (errorObject) => {
     persistorStore.store.dispatch(getColorFailureAction());
@@ -67,6 +71,7 @@ function* createUserProfile(data) {
         [auth, auth.update],
         updates
       )
+      console.log('create user profile successsss');
   
     } catch(error) {
       // yield put(saveColorFailureAction(error))
@@ -91,6 +96,7 @@ function* signUp(data) {
     yield createUserProfile(data);
     yield signIn(data);
     yield put(signUpSuccessAction(result.user.uid));
+    yield put(createUserProfileSuccessAction(data));
     
   } catch(error) {
     yield put(signUpFailureAction(error));
@@ -98,6 +104,8 @@ function* signUp(data) {
 }
 
 function* saveColor(data) {
+
+  console.log(data);
   // Get a key for a new color
   const key = firebase.database().ref().child('colors').push().key;
 
