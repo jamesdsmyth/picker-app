@@ -1,7 +1,7 @@
 import React, { Component} from 'react';
 import { View, Text, TouchableHighlight } from 'react-native';
 import { connect } from 'react-redux';
-import { 
+import {
   signInAction, 
   signUpAction, 
   clearSignInErrorsAction,
@@ -101,13 +101,12 @@ class SignIn extends Component {
               <Text>Your email address or password was incorrect</Text>
           }
           <TouchableHighlight 
-            style={[styles.btn, styles.colorCodeSectionColors]}
+            style={[styles.btn, styles.signInSignUpBtn]}
             onPress={this.signIn}>
             <Text style={styles.colorCodeSectionSaveText}>
               Login
             </Text>
           </TouchableHighlight>
-
           <TouchableHighlight onPress={this.toggleSignUp}>
             <Text style={styles.formMessage}>
               Not got an account? Create one here
@@ -134,10 +133,10 @@ class SignIn extends Component {
               </View>
           }
           <TouchableHighlight 
-            style={[styles.btn, styles.colorCodeSectionColors]}
+            style={[styles.btn, styles.signInSignUpBtn]}
             onPress={this.signUp}>
             <Text style={styles.colorCodeSectionSaveText}>
-              Create account
+              Create
             </Text>
           </TouchableHighlight>
           <TouchableHighlight onPress={this.toggleSignUp}>

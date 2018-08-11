@@ -122,11 +122,9 @@ function* saveColor(data) {
     const result = yield call(
       [auth, auth.update],
       updates
-    )
+    );
 
     yield put(saveColorSuccessAction());
-    alert('Color saved!');
-
   } catch(error) {
     yield put(saveColorFailureAction(error))
   }

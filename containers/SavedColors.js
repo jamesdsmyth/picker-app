@@ -15,7 +15,6 @@ class SavedColors extends Component {
   }
 
   componentWillMount() {
-    console.log(this.props.user)
     this.props.getColorsDispatch(this.props.user.uid);
   }
 
@@ -30,8 +29,6 @@ class SavedColors extends Component {
 
   render() {
     const list = this.props.colors || {};
-
-    console.log(list);
     const arr = Object.keys(list).map(item => {
       return list[item]
     });
