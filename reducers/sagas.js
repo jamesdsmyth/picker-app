@@ -39,14 +39,38 @@ function* signIn(data) {
 
     // we will save the color if the user has signed up/signed in after clicking 'save'
     if(data.data.colorsArray) {
-      data.data.id = result.user.uid;
       yield saveColor(data.data);
     }
     
+    
   } catch(error) {
-    console.log('this is an error', error);
     yield put(signInFailureAction(error));
   }
+}
+
+// here we create a profile for the user. Currently this just holds their name
+function* createUserProfile(data) {
+    // Get a key for a new profile
+    const key = firebase.database().ref().child('profiles').push().key;
+
+    const obj = {
+      name: data.data.name
+    }
+  
+    // add the color to the list /colors/
+    let updates = {};
+    updates[`/profiles/${data.data.uid}/${key}`] = obj;
+  
+    try {
+      const auth = firebase.database().ref();
+      yield call(
+        [auth, auth.update],
+        updates
+      )
+  
+    } catch(error) {
+      // yield put(saveColorFailureAction(error))
+    }
 }
 
 // sign up will also sign the user in by calling yield signIn(data);
@@ -62,11 +86,13 @@ function* signUp(data) {
       data.data.email,
       data.data.password
     )
+    data.data.uid = result.user.uid;
 
-    yield put(signUpSuccessAction(result.user.uid));
+    yield createUserProfile(data);
     yield signIn(data);
+    yield put(signUpSuccessAction(result.user.uid));
+    
   } catch(error) {
-    console.log(error);
     yield put(signUpFailureAction(error));
   }
 }
@@ -81,7 +107,7 @@ function* saveColor(data) {
 
   // add the color to the list /colors/
   let updates = {};
-  updates[`/colors/${data.id}/${key}`] = obj;
+  updates[`/colors/${data.uid}/${key}`] = obj;
 
   try {
     const auth = firebase.database().ref();

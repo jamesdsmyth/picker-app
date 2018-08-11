@@ -1,7 +1,4 @@
-- need to restyle the sign in and log in page
-- save color needs to show an alert when saved
+- save name
+- in colors 
 
-- tempSaveColorDispatch: (colorArr) => dispatch(tempSaveColorAction(colorArr))
-
-is dispatching an action that should temp save the array. We need it on
-sign in or sign up save this properly.
+'Hi James, you have 13 colors saved here.

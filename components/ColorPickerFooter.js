@@ -20,14 +20,14 @@ const ColorPickerFooter = ({ bgColor, savedColors, saveColor }) => (
           Colors
         </Text>
       </TouchableHighlight>
-      {/* <TouchableHighlight
+      <TouchableHighlight
         style={[styles.btn, styles.colorCodeSectionColors]}
         onPress={() => persistorStore.persistor.purge()}
       >
         <Text style={styles.colorCodeSectionSaveText}>
           Purge
         </Text>
-      </TouchableHighlight> */}
+      </TouchableHighlight>
       <TouchableHighlight
         style={[styles.btn, styles.colorCodeSectionSave]}
         onPress={() => saveColor(bgColor)}
