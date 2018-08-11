@@ -87,6 +87,17 @@ const styles = StyleSheet.create({
     paddingBottom: 20,
     justifyContent: 'center',
     alignItems: 'center'
+  },
+  notification: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    height: 50,
+    width: window.width,
+    display: 'none',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(255, 255, 255, 0.5)'
   }
 });
 

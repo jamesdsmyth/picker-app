@@ -90,7 +90,8 @@ function* saveColor(data) {
       updates
     )
 
-    yield put(saveColorSuccessAction())
+    yield put(saveColorSuccessAction());
+    alert('Color saved!');
 
   } catch(error) {
     yield put(saveColorFailureAction(error))
