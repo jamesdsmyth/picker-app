@@ -32,22 +32,19 @@ const ColorPickerFooter = ({ bgColor, hexColor, toggleColorText, savedColors, sa
           Colors
         </Text>  
       </TouchableHighlight>
-      <TouchableHighlight
+      {/* <TouchableHighlight
         style={[styles.btn, styles.colorCodeSectionColors]}
         onPress={() => persistorStore.persistor.purge()}
       >
         <Text style={styles.colorCodeSectionSaveText}>
           Purge
         </Text>
-      </TouchableHighlight>
+      </TouchableHighlight> */}
       <TouchableHighlight
         style={styles.colorCodeSectionSave}
         onPress={() => saveColor(bgColor)}
       >
         <HeartSVG bgColor={hexColor} />
-        {/* <Text style={styles.colorCodeSectionSaveText}>
-          Save
-        </Text> */}
       </TouchableHighlight>
     </View>
   </View>

@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row'
   },
   colorCodeSectionText: {
-    fontSize: 20,
+    fontSize: 15,
     color: '#ffffff'
   },
   btn: {
@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
     // backgroundColor: 'rgba(255, 255, 255, 0.2)',
     // borderColor:  '#1db954',
     // borderWidth: 2,
-    marginLeft: 10
+    marginLeft: 15
   },
   colorCodeSectionColors: {
     backgroundColor: 'rgba(255, 255, 255, 0.2)',
