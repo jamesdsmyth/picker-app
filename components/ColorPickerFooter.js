@@ -6,8 +6,7 @@ import PropTypes from 'prop-types';
 import styles from '../styles/styles';
 
 const ColorPickerFooter = ({ bgColor, hexColor, toggleColorText, savedColors, saveColor, showRGBText }) => (
-  <View style={styles.colorCodeSection}>
-    
+  <View style={styles.colorCodeSection}>   
     {
       showRGBText ?
       <TouchableHighlight onPress={toggleColorText}>
@@ -42,12 +41,13 @@ const ColorPickerFooter = ({ bgColor, hexColor, toggleColorText, savedColors, sa
         </Text>
       </TouchableHighlight>
       <TouchableHighlight
-        style={[styles.btn, styles.colorCodeSectionSave]}
+        style={styles.colorCodeSectionSave}
         onPress={() => saveColor(bgColor)}
       >
-        <Text style={styles.colorCodeSectionSaveText}>
+        <HeartSVG bgColor={hexColor} />
+        {/* <Text style={styles.colorCodeSectionSaveText}>
           Save
-        </Text>
+        </Text> */}
       </TouchableHighlight>
     </View>
   </View>

@@ -8,8 +8,6 @@ import { getColorsAction } from '../actions/actions';
 class SavedColors extends Component {
   constructor(props) {
     super(props);
-
-    this.handleBackButton = this.handleBackButton.bind(this);
   }
 
   static navigationOptions = {

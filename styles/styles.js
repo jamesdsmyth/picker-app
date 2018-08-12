@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
     paddingRight: 10
   },
   colorCodeSectionSave: {
-    backgroundColor: 'rgba(255, 255, 255, 0.2)',
+    // backgroundColor: 'rgba(255, 255, 255, 0.2)',
     // borderColor:  '#1db954',
     // borderWidth: 2,
     marginLeft: 10
