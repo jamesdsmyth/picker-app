@@ -8,6 +8,12 @@ import { getColorsAction } from '../actions/actions';
 class SavedColors extends Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      showRGB: true
+    }
+
+    this.toggleColorValue = this.toggleColorValue.bind(this);
   }
 
   static navigationOptions = {
@@ -18,6 +24,11 @@ class SavedColors extends Component {
     this.props.getColorsDispatch(this.props.user.uid);
   }
 
+  toggleColorValue() {
+    this.setState({
+      showRGB: !this.state.showRGB
+    });
+  }
 
   // creating a unique ID here using the RGB and the index of the list item
   createId = (item, index) => {
@@ -51,13 +62,20 @@ class SavedColors extends Component {
                 ({item}) => {
                   return (
                     <View
+                      onPress={this.toggleColorValue}
                       style={
                       [
                         styles.savedColor,
                         { 'backgroundColor': `rgb(${item.rgb[0]}, ${item.rgb[1]}, ${item.rgb[2]})` }
                       ]
                     }>
-                      <Text style={styles.savedColorText}>RGB {item.rgb[0]}, {item.rgb[1]}, {item.rgb[2]}</Text>
+                      {
+                        this.state.showRGB
+                        ?
+                        <Text style={styles.savedColorText}>RGB {item.rgb[0]}, {item.rgb[1]}, {item.rgb[2]}</Text>
+                        :
+                        <Text style={styles.savedColorText}>RGB {item.rgb[0]}, {item.rgb[1]}, {item.rgb[2]}</Text>
+                      }
                     </View>
                   )
                 }   
