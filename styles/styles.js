@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
     // backgroundColor: 'rgba(255, 255, 255, 0.2)',
     // borderColor:  '#1db954',
     // borderWidth: 2,
-    marginLeft: 15
+    marginLeft: 12
   },
   colorCodeSectionColors: {
     backgroundColor: 'rgba(255, 255, 255, 0.2)',
@@ -89,10 +89,11 @@ const styles = StyleSheet.create({
   savedColor: {
     flex: 1,
     width: window.width,
-    paddingTop: 20,
-    paddingBottom: 20,
-    justifyContent: 'center',
-    alignItems: 'center'
+    paddingTop: 70,
+    paddingBottom: 5,
+    paddingLeft: 5,
+    // justifyContent: 'flex-start',
+    alignItems: 'flex-start'
   },
   notification: {
     position: 'absolute',

@@ -25,6 +25,7 @@ class SavedColors extends Component {
   }
 
   toggleColorValue() {
+    console.log('clicked toggle');
     this.setState({
       showRGB: !this.state.showRGB
     });
@@ -62,7 +63,6 @@ class SavedColors extends Component {
                 ({item}) => {
                   return (
                     <View
-                      onPress={this.toggleColorValue}
                       style={
                       [
                         styles.savedColor,
@@ -71,9 +71,7 @@ class SavedColors extends Component {
                     }>
                       {
                         this.state.showRGB
-                        ?
-                        <Text style={styles.savedColorText}>RGB {item.rgb[0]}, {item.rgb[1]}, {item.rgb[2]}</Text>
-                        :
+                          &&
                         <Text style={styles.savedColorText}>RGB {item.rgb[0]}, {item.rgb[1]}, {item.rgb[2]}</Text>
                       }
                     </View>
