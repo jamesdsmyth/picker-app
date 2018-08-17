@@ -25,7 +25,6 @@ class SavedColors extends Component {
   }
 
   toggleColorValue() {
-    console.log('clicked toggle');
     this.setState({
       showRGB: !this.state.showRGB
     });
@@ -41,7 +40,7 @@ class SavedColors extends Component {
   }
 
   render() {
-    const list = this.props.colors || {};
+    const list = this.props.colors.list || {};
     const arr = Object.keys(list).map(item => {
       return list[item]
     });
@@ -51,10 +50,13 @@ class SavedColors extends Component {
     return (
       <View style={styles.container}>
         {/* <Text style={styles.savedColorsTitle}>Hi {this.props.user.name},</Text>
-        <Text style={styles.savedColorsSubtitle}>Here are your colors...</Text> */}
+        <Text style={styles.savedColorsSubtitle}>Here are your colors...</Text> */}        
         {
           arr.length === 0 ?
-            <Text>Fetching your colors</Text>
+            this.props.colors.colorsReceived ?
+              <Text style={styles.savedColorsTitle}>You haven't got any colors saved :(</Text>
+              :
+              <Text style={styles.savedColorsSubtitle}>Fetching your colors...</Text>
             :
             <FlatList
               data={descendingArr}
@@ -86,6 +88,9 @@ class SavedColors extends Component {
 }
 
 const mapStateToProps = (state) => {
+
+  console.log(state);
+
   return {
     colors: state.getColorsReducer,
     user: state.currentUserReducer

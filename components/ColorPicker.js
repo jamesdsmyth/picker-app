@@ -16,7 +16,7 @@ class ColorPicker extends Component {
         three: new Animated.ValueXY()
       },
       bgColor: [255, 255, 255],
-      hexColor: '#FFFFFF',
+      hexColor: '#ffffff',
       height: Dimensions.get('window').height - 150,
       boundaryTop: 50,
       responders: new Array(3), // we populate this array using PanResponder.create() function
