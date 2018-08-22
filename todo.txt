@@ -1,4 +1,2 @@
-- save name
-- in colors 
-
-'Hi James, you have 13 colors saved here.
+- need a reset password function
+- release product 
