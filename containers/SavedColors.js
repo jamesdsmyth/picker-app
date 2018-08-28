@@ -58,29 +58,34 @@ class SavedColors extends Component {
               :
               <Text style={styles.savedColorsSubtitle}>Fetching your colors...</Text>
             :
-            <FlatList
-              data={descendingArr}
-              keyExtractor={this.createId}
-              renderItem={
-                ({item}) => {
-                  return (
-                    <View
-                      style={
-                      [
-                        styles.savedColor,
-                        { 'backgroundColor': `rgb(${item.rgb[0]}, ${item.rgb[1]}, ${item.rgb[2]})` }
-                      ]
-                    }>
-                      {
-                        this.state.showRGB
-                          &&
-                        <Text style={styles.savedColorText}>RGB {item.rgb[0]}, {item.rgb[1]}, {item.rgb[2]}</Text>
-                      }
-                    </View>
-                  )
-                }   
-              }
-            />
+            <View>
+              <FlatList
+                data={descendingArr}
+                keyExtractor={this.createId}
+                renderItem={
+                  ({item}) => {
+                    return (
+                      <View
+                        style={
+                        [
+                          styles.savedColor,
+                          { 'backgroundColor': `rgb(${item.rgb[0]}, ${item.rgb[1]}, ${item.rgb[2]})` }
+                        ]
+                      }>
+                        {
+                          this.state.showRGB
+                            &&
+                          <Text style={styles.savedColorText}>RGB {item.rgb[0]}, {item.rgb[1]}, {item.rgb[2]}</Text>
+                        }
+                      </View>
+                    )
+                  }   
+                }
+              />
+              <Text>
+                Sign out
+              </Text>
+            </View>
         }
       </View>
     )

@@ -22,7 +22,7 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.eiger.picklette"
+      "bundleIdentifier": "com.eiger.Picklette"
     }
   }
 }
