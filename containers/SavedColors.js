@@ -82,9 +82,6 @@ class SavedColors extends Component {
                   }   
                 }
               />
-              <Text>
-                Sign out
-              </Text>
             </View>
         }
       </View>
@@ -93,9 +90,6 @@ class SavedColors extends Component {
 }
 
 const mapStateToProps = (state) => {
-
-  console.log(state);
-
   return {
     colors: state.getColorsReducer,
     user: state.currentUserReducer

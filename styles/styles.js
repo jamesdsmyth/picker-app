@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
     // backgroundColor: 'rgba(255, 255, 255, 0.2)',
     // borderColor:  '#1db954',
     // borderWidth: 2,
-    marginLeft: 12
+    // marginLeft: 12
   },
   colorCodeSectionColors: {
     backgroundColor: 'rgba(255, 255, 255, 0.2)',
