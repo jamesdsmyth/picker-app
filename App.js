@@ -11,7 +11,8 @@ const RootStack = createStackNavigator(
   {
     Home: Landing,
     SavedColors: SavedColors,
-    SignIn: SignIn
+    SignIn: SignIn,
+    // Profile: Profile
   },
   {
     initialRouteName: 'Home',

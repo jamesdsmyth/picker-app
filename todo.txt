@@ -1,2 +1,2 @@
 - need a reset password function
-- release product 
+- add user profile section
