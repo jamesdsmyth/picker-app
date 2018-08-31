@@ -244,6 +244,7 @@ class ColorPicker extends Component {
                   toggleColorText={this.toggleColorText}
                   savedColors={this.props.savedColors}
                   saveColor={this.props.saveColor}
+                  profile={this.props.profile}
                   showRGBText={this.state.showRGBText}
                 />
               }

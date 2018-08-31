@@ -12,6 +12,7 @@ class Landing extends Component {
 
     this.saveColor = this.saveColor.bind(this);
     this.savedColors = this.savedColors.bind(this);
+    this.profile = this.profile.bind(this);
   }
 
   static navigationOptions = {
@@ -37,12 +38,18 @@ class Landing extends Component {
     }
   }
 
+  // calling this function will take you to the profile section
+  profile() {
+    this.props.navigation.navigate('Profile');
+  }
+
   render() {
     return (
       <View style={styles.container}> 
         <ColorPicker 
           savedColors={this.savedColors}
           saveColor={this.saveColor}
+          profile={this.profile}
         />
       </View>
     )

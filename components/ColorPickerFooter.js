@@ -1,6 +1,5 @@
 import React from 'react';
 import { View, Text, TouchableHighlight } from 'react-native';
-import HeartSVG from '../assets/HeartSVG';
 import AddSVG from '../assets/AddSVG';
 import UserSVG from '../assets/UserSVG';
 import ColorsSVG from '../assets/ColorsSVG';
@@ -8,7 +7,7 @@ import persistorStore from '../reducers/combinedReducers';
 import PropTypes from 'prop-types';
 import styles from '../styles/styles';
 
-const ColorPickerFooter = ({ bgColor, hexColor, toggleColorText, savedColors, saveColor, showRGBText }) => (
+const ColorPickerFooter = ({ bgColor, hexColor, toggleColorText, savedColors, saveColor, profile, showRGBText }) => (
   <View style={styles.colorCodeSection}>   
     {
       // showRGBText ?
@@ -29,7 +28,7 @@ const ColorPickerFooter = ({ bgColor, hexColor, toggleColorText, savedColors, sa
     {/* <View style={styles.colorCodeButtonSection}> */}
       <TouchableHighlight
         style={styles.colorCodeSectionSave}
-        onPress={() => alert('should take you to user profile')}
+        onPress={() => profile()}
       >
         <UserSVG/>
       </TouchableHighlight>

@@ -6,13 +6,14 @@ import persistorStore from './reducers/combinedReducers';
 import Landing from './containers/Landing';
 import SavedColors from './containers/SavedColors';
 import SignIn from './containers/SignIn';
+import Profile from './containers/Profile';
 
 const RootStack = createStackNavigator(
   {
     Home: Landing,
     SavedColors: SavedColors,
     SignIn: SignIn,
-    // Profile: Profile
+    Profile: Profile
   },
   {
     initialRouteName: 'Home',
