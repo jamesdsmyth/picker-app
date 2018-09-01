@@ -52,16 +52,21 @@ function* signIn(data) {
   }
 }
 
+// reset users password using their email address
 function* resetPassword(data) {
-  var auth = firebase.auth();
-  var emailAddress = "user@example.com";
 
-  auth.sendPasswordResetEmail(data.email).then(function() {
+  try {
+    const auth = firebase.auth();
+    const result = yield call(
+      [auth, auth.sendPasswordResetEmail],
+      data.data
+    )
     alert('email sent');
-
-  }).catch(function(error) {
+    
+    
+  } catch(error) {
     alert('email failed');
-  });
+  }
 }
 
 // here we create a profile for the user. Currently this just holds their name
