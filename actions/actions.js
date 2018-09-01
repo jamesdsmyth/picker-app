@@ -103,6 +103,19 @@ export function signUpFailureAction(data) {
   }
 }
 
+export function signOutAction() {
+  return {
+    type: 'SIGN_OUT'
+  }
+}
+
+export function resetPasswordAction(data) {
+  return {
+    type: 'RESET_PASSWORD',
+    data
+  }
+}
+
 export function clearSignInErrorsAction() {
   return {
     type: 'CLEAR_SIGN_IN_ERROR_MESSAGES'

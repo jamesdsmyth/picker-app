@@ -40,7 +40,11 @@ class Landing extends Component {
 
   // calling this function will take you to the profile section
   profile() {
-    this.props.navigation.navigate('Profile');
+    if(this.props.user.loggedIn) {
+      this.props.navigation.navigate('Profile');
+    } else {
+      this.props.navigation.navigate('SignIn');
+    }
   }
 
   render() {

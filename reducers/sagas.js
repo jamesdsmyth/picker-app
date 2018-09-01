@@ -52,6 +52,18 @@ function* signIn(data) {
   }
 }
 
+function* resetPassword(data) {
+  var auth = firebase.auth();
+  var emailAddress = "user@example.com";
+
+  auth.sendPasswordResetEmail(data.email).then(function() {
+    alert('email sent');
+
+  }).catch(function(error) {
+    alert('email failed');
+  });
+}
+
 // here we create a profile for the user. Currently this just holds their name
 function* createUserProfile(data) {
     // Get a key for a new profile
@@ -145,10 +157,15 @@ export function* watchSignUp(data) {
   yield signUp(data);
 }
 
+export function* watchResetPassword(data) {
+  yield resetPassword(data);
+}
+
 // single entry point to start all our sagas at once
 export default function* rootSaga() {
   yield takeEvery('GET_FIREBASE_COLORS', watchGetColors);
   yield takeEvery('SAVE_COLOR', watchSaveColor);
   yield takeEvery('SIGN_IN', watchSignIn);
   yield takeEvery('SIGN_UP', watchSignUp);
+  yield takeEvery('RESET_PASSWORD', watchResetPassword);
 }

@@ -27,21 +27,18 @@ const ColorPickerFooter = ({ bgColor, hexColor, toggleColorText, savedColors, sa
     }
     {/* <View style={styles.colorCodeButtonSection}> */}
       <TouchableHighlight
-        style={styles.colorCodeSectionSave}
         onPress={() => profile()}
       >
         <UserSVG/>
       </TouchableHighlight>
  
       <TouchableHighlight
-        style={styles.colorCodeSectionSave}
         onPress={() => saveColor(bgColor)}
       >
         <AddSVG bgColor={hexColor} />
       </TouchableHighlight>
 
       <TouchableHighlight
-        style={styles.colorCodeSectionSave}
         onPress={() => savedColors()}
       >
         <ColorsSVG/>

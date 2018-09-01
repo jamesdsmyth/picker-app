@@ -48,15 +48,8 @@ const styles = StyleSheet.create({
     paddingBottom: 5,
     paddingRight: 10
   },
-  colorCodeSectionSave: {
-    // backgroundColor: 'rgba(255, 255, 255, 0.2)',
-    // borderColor:  '#1db954',
-    // borderWidth: 2,
-    // marginLeft: 12
-  },
-  colorCodeSectionColors: {
-    backgroundColor: 'rgba(255, 255, 255, 0.2)',
-    // backgroundColor: '#4980eb'
+  signOutBtn: {
+    backgroundColor: '#1db954'
   },
   signInSignUpBtn: {
     backgroundColor: '#1db954'

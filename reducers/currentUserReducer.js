@@ -16,9 +16,15 @@ const currentUserReducer = (state = { loggedIn: false }, action) => {
         name: action.name 
       }
 
-      console.log(Object.assign({}, state, obj));
-
       return Object.assign({}, state, obj);
+
+    case 'SIGN_OUT': 
+      return {
+        name: '',
+        email: '',
+        uid: '',
+        loggedIn: false
+      };
 
     default:
       return state;
