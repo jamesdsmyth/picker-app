@@ -46,7 +46,6 @@ function* signIn(data) {
       yield saveColor(data.data);
     }
     
-    
   } catch(error) {
     yield put(signInFailureAction(error));
   }
