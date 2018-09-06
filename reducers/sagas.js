@@ -52,6 +52,7 @@ function* signIn(data) {
 }
 
 // reset users password using their email address
+// need to add dispatches here so we show a success or error message.
 function* resetPassword(data) {
 
   try {
@@ -61,8 +62,6 @@ function* resetPassword(data) {
       data.data
     )
     alert('email sent');
-    
-    
   } catch(error) {
     alert('email failed');
   }
