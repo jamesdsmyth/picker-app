@@ -19,10 +19,7 @@ import {
 function* getColors(data) {
   const itemsRef = yield firebase.database().ref(`/colors/${data.data}`);
 
-  console.log(data);
-  
   itemsRef.on('value', (snapshot) => {
-    console.log(snapshot.val());
     persistorStore.store.dispatch(getColorSuccessAction(snapshot.val()));
   }, (errorObject) => {
     persistorStore.store.dispatch(getColorFailureAction());
@@ -62,7 +59,7 @@ function* resetPassword(data) {
       [auth, auth.sendPasswordResetEmail],
       data.data
     )
-    alert('email sent');
+    alert('Rest password email sent');
   } catch(error) {
     alert('email failed');
   }
@@ -87,7 +84,6 @@ function* createUserProfile(data) {
         [auth, auth.update],
         updates
       )
-      console.log('create user profile successsss');
   
     } catch(error) {
       // yield put(saveColorFailureAction(error))

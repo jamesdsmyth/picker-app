@@ -49,16 +49,20 @@ class SavedColors extends Component {
 
     if(arr.length === 0) {
       return (
-        this.props.colors.colorsReceived ?
-          <Text style={styles.savedColorsTitle}>You haven't got any colors saved :(</Text>
-          :
-          <Text style={styles.savedColorsSubtitle}>Fetching your colors...</Text>
+        <View style={styles.profileContainer}>
+          {
+            this.props.colors.colorsReceived ?
+              <Text style={styles.savedColorsTitle}>You haven't got any colors saved :(</Text>
+              :
+              <Text style={styles.savedColorsSubtitle}>Fetching your colors...</Text>
+          }
+        </View>
       )
     }
 
     if(arr.length > 0) {
       return (
-        <View>
+        <View style={styles.container}>
           <FlatList
             data={descendingArr}
             keyExtractor={this.createId}

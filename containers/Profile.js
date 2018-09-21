@@ -22,6 +22,7 @@ class Profile extends Component {
     persistorStore.persistor.purge();
     this.props.navigation.navigate('Home');
     this.props.signOutDispatch();
+    alert('You have signed out')
   }
 
   resetPassword() {
@@ -51,13 +52,6 @@ class Profile extends Component {
           </TouchableHighlight>
         </View>
       </View>
-      
-      // need to add a reset password link.
-      // need to list how many colors you have saved.
-      // Hey James! 
-      // You have 35 colors saved!
-      // ------
-      // Want to update your password? You can reset it <here />
     )
   }
 }
