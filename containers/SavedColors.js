@@ -17,7 +17,7 @@ class SavedColors extends Component {
   }
 
   static navigationOptions = {
-    title: 'Your Colors'
+    title: 'Colors'
   }
 
   componentWillMount() {
@@ -47,45 +47,44 @@ class SavedColors extends Component {
 
     const descendingArr = arr.reverse();
 
-    return (
-      <View style={styles.container}>
-        {/* <Text style={styles.savedColorsTitle}>Hi {this.props.user.name},</Text>
-        <Text style={styles.savedColorsSubtitle}>Here are your colors...</Text> */}        
-        {
-          arr.length === 0 ?
-            this.props.colors.colorsReceived ?
-              <Text style={styles.savedColorsTitle}>You haven't got any colors saved :(</Text>
-              :
-              <Text style={styles.savedColorsSubtitle}>Fetching your colors...</Text>
-            :
-            <View>
-              <FlatList
-                data={descendingArr}
-                keyExtractor={this.createId}
-                renderItem={
-                  ({item}) => {
-                    return (
-                      <View
-                        style={
-                        [
-                          styles.savedColor,
-                          { 'backgroundColor': `rgb(${item.rgb[0]}, ${item.rgb[1]}, ${item.rgb[2]})` }
-                        ]
-                      }>
-                        {
-                          this.state.showRGB
-                            &&
-                          <Text style={styles.savedColorText}>RGB {item.rgb[0]}, {item.rgb[1]}, {item.rgb[2]}</Text>
-                        }
-                      </View>
-                    )
-                  }   
-                }
-              />
-            </View>
-        }
-      </View>
-    )
+    if(arr.length === 0) {
+      return (
+        this.props.colors.colorsReceived ?
+          <Text style={styles.savedColorsTitle}>You haven't got any colors saved :(</Text>
+          :
+          <Text style={styles.savedColorsSubtitle}>Fetching your colors...</Text>
+      )
+    }
+
+    if(arr.length > 0) {
+      return (
+        <View>
+          <FlatList
+            data={descendingArr}
+            keyExtractor={this.createId}
+            renderItem={
+              ({item}) => {
+                return (
+                  <View
+                    style={
+                    [
+                      styles.savedColor,
+                      { 'backgroundColor': `rgb(${item.rgb[0]}, ${item.rgb[1]}, ${item.rgb[2]})` }
+                    ]
+                  }>
+                    {
+                      this.state.showRGB
+                        &&
+                      <Text style={styles.savedColorText}>RGB {item.rgb[0]}, {item.rgb[1]}, {item.rgb[2]}</Text>
+                    }
+                  </View>
+                )
+              }   
+            }
+          />
+        </View>
+      )
+    }
   }
 }
 

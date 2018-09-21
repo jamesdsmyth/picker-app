@@ -10,14 +10,16 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     width: window.width,
   },
-  signInContainer: {
+  profileContainer: {
     flex: 10,
     flexDirection: 'column',
+    justifyContent: 'space-between',
     backgroundColor: '#ffffff',
-    justifyContent: 'center',
     width: window.width,
     paddingLeft: 10,
-    paddingRight: 10
+    paddingRight: 10,
+    paddingTop: 30,
+    paddingBottom: 10
   },
   colorCodeSection: {
     position: 'absolute',
@@ -43,13 +45,16 @@ const styles = StyleSheet.create({
   },
   btn: {
     borderRadius: 4,
-    paddingTop: 5,
+    paddingTop: 8,
     paddingLeft: 10,
-    paddingBottom: 5,
+    paddingBottom: 8,
     paddingRight: 10
   },
+  topBtn: {
+    marginBottom: 10
+  },
   signOutBtn: {
-    backgroundColor: '#1db954'
+    backgroundColor: '#bababa'
   },
   signInSignUpBtn: {
     backgroundColor: '#1db954'
@@ -63,6 +68,16 @@ const styles = StyleSheet.create({
     marginTop: 10,
     color: '#4980eb',
     textAlign: 'center'
+  },
+
+  // Profile section
+  profileName: {
+    fontSize: 25,
+    marginBottom: 20,
+    color: '#353535'
+  },
+  profileButtons: {
+
   },
 
   // ColorPicker component

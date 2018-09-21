@@ -87,7 +87,7 @@ class SignIn extends Component {
 
   render() {
     return (
-      <View style={styles.signInContainer}>
+      <View style={styles.profileContainer}>
       {
         !this.state.signUpVisible &&
         <View>

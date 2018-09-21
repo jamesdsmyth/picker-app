@@ -15,7 +15,7 @@ class Profile extends Component {
   }
 
   static navigationOptions = {
-    title: 'Your Profile'
+    title: 'Profile'
   }
 
   signOut() {
@@ -30,15 +30,15 @@ class Profile extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
-        <Text>Hi {this.props.user.name}</Text>
-        <View style={styles.profileSection}>
+      <View style={styles.profileContainer}>
+        <Text style={styles.profileName}>Hi, {this.props.user.name}</Text>
+        <View style={styles.profileButtons}>
           <TouchableHighlight
-            style={[styles.btn, styles.signOutBtn]}
+            style={[styles.btn, styles.signOutBtn, styles.topBtn]}
             onPress={this.signOut}
           >
             <Text style={styles.colorCodeSectionSaveText}>
-              Sign out
+              Sign Out
             </Text>
           </TouchableHighlight>
           <TouchableHighlight
@@ -46,7 +46,7 @@ class Profile extends Component {
             onPress={this.resetPassword}
           >
             <Text style={styles.colorCodeSectionSaveText}>
-              Reset password
+              Reset Password
             </Text>
           </TouchableHighlight>
         </View>
