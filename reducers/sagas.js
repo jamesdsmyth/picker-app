@@ -59,7 +59,7 @@ function* resetPassword(data) {
       [auth, auth.sendPasswordResetEmail],
       data.data
     )
-    alert('Rest password email sent');
+    alert('Reset password email sent');
   } catch(error) {
     alert('email failed');
   }
