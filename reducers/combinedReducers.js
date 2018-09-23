@@ -2,6 +2,7 @@ import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { persistStore, persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage' // defaults to localStorage for web and AsyncStorage for react-native
 import createSagaMiddleware from 'redux-saga';
+import logger from 'redux-logger';
 
 import rootSaga from './sagas';
 import getColorsReducer from './getColorsReducer';
@@ -34,7 +35,7 @@ const persistedReducer = persistReducer(persistConfig, combinedReducers)
 
 const store = createStore(
   persistedReducer,
-  applyMiddleware(sagaMiddleware)
+  applyMiddleware(sagaMiddleware, logger)
 )
 
 const persistor = persistStore(store)

@@ -16,5 +16,8 @@
     "redux-persist": "^5.10.0",
     "redux-saga": "^0.16.0",
     "tcomb-form-native": "^0.6.15"
+  },
+  "devDependencies": {
+    "redux-logger": "^3.0.6"
   }
 }
