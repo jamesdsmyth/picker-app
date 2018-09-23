@@ -36,9 +36,6 @@ class SavedColors extends Component {
     
     const descendingArr = arr.reverse();
 
-    console.log(descendingArr);
-    // const hexColor = rgbToHexConversion(bgColor);
-
     if(arr.length === 0) {
       return (
         <View style={styles.profileContainer}>

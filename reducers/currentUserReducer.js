@@ -1,6 +1,4 @@
 const currentUserReducer = (state = { loggedIn: false }, action) => {
-
-  console.log(action);
   switch(action.type) {
     case 'SIGN_IN_SUCCESS':
 
