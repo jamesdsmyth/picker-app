@@ -44,6 +44,11 @@ const styles = StyleSheet.create({
   },
   colorCodeSectionText: {
     fontSize: 16,
+    color: '#ffffff',
+    marginLeft: 10
+  },
+  colorCodeSectionTextValue: {
+    fontSize: 16,
     color: '#ffffff'
   },
   btn: {

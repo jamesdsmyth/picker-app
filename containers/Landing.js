@@ -54,6 +54,7 @@ class Landing extends Component {
           savedColors={this.savedColors}
           saveColor={this.saveColor}
           profile={this.profile}
+          savingColor={this.props.color.savingColor}
         />
       </View>
     )
@@ -62,7 +63,8 @@ class Landing extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    user: state.currentUserReducer
+    user: state.currentUserReducer,
+    color: state.saveColorReducer
   }
 }
 

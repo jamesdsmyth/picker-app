@@ -246,12 +246,13 @@ class ColorPicker extends Component {
                   saveColor={this.props.saveColor}
                   profile={this.props.profile}
                   showRGBText={this.state.showRGBText}
+                  savingColor={this.props.savingColor}
                 />
               }
           </View>
         }
       </View>
-    );
+    )
   }
 }
 
