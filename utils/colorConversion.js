@@ -10,7 +10,3 @@ export function rgbToHexConversion(rgb) {
 
   return hexUpper;
 }
-
-export function createRGBValue() {
-
-}

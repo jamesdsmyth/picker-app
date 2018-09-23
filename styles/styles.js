@@ -35,12 +35,15 @@ const styles = StyleSheet.create({
     paddingRight: 10,
     backgroundColor: 'rgba(0, 0, 0, 0.2)'
   },
+  colorCodeValues: {
+    width: window.width / 2.5
+  },
   colorCodeButtonSection: {
     display: 'flex',
     flexDirection: 'row'
   },
   colorCodeSectionText: {
-    fontSize: 15,
+    fontSize: 16,
     color: '#ffffff'
   },
   btn: {
@@ -60,7 +63,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#1db954'
   },
   colorCodeSectionSaveText: {
-    fontSize: 20,
+    fontSize: 16,
     color: '#ffffff',
     textAlign: 'center'
   },
@@ -72,14 +75,10 @@ const styles = StyleSheet.create({
 
   // Profile section
   profileName: {
-    fontSize: 25,
+    fontSize: 20,
     marginBottom: 20,
     color: '#353535'
   },
-  profileButtons: {
-
-  },
-
   // ColorPicker component
   colorPickerContainer: {
     flex: 1,
@@ -100,7 +99,7 @@ const styles = StyleSheet.create({
     paddingTop: 70,
     paddingBottom: 5,
     paddingLeft: 5,
-    // justifyContent: 'flex-start',
+    marginBottom: 5,
     alignItems: 'flex-start'
   },
   notification: {
