@@ -65,12 +65,14 @@ class SavedColors extends Component {
                       { 'backgroundColor': `rgb(${item.rgb[0]}, ${item.rgb[1]}, ${item.rgb[2]})` }
                     ]
                   }>
-                    <Text style={styles.savedColorText}>
-                      HEX {rgbToHexConversion(item.rgb)}
-                    </Text>
-                    <Text style={styles.savedColorText}>
-                      RGB {item.rgb[0]}, {item.rgb[1]}, {item.rgb[2]}
-                    </Text>
+                    <View style={styles.savedColorContainer}>
+                      <Text style={styles.savedColorText}>
+                        HEX {rgbToHexConversion(item.rgb)}
+                      </Text>
+                      <Text style={styles.savedColorText}>
+                        RGB {item.rgb[0]}, {item.rgb[1]}, {item.rgb[2]}
+                      </Text>
+                    </View>
                   </View>
                 )
               }   

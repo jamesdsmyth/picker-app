@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
     marginBottom: 10
   },
   signOutBtn: {
-    backgroundColor: '#bababa'
+    backgroundColor: '#333333'
   },
   signInSignUpBtn: {
     backgroundColor: '#1db954'
@@ -115,8 +115,6 @@ const styles = StyleSheet.create({
     flex: 1,
     width: window.width,
     paddingTop: 70,
-    paddingBottom: 5,
-    paddingLeft: 5,
     marginBottom: 5,
     alignItems: 'flex-start'
   },
@@ -141,6 +139,12 @@ const styles = StyleSheet.create({
     fontSize: 20,
     marginBottom: 10,
     color: '#4f4f4f'
+  },
+  savedColorContainer: {
+    backgroundColor: '#ffffff',
+    paddingLeft: 5,
+    paddingRight: 5,
+    paddingTop: 5
   }
 });
 
