@@ -21,6 +21,16 @@ const styles = StyleSheet.create({
     paddingTop: 30,
     paddingBottom: 10
   },
+  signInContainer: {
+    flex: 10,
+    flexDirection: 'column',
+    backgroundColor: '#ffffff',
+    width: window.width,
+    paddingLeft: 10,
+    paddingRight: 10,
+    paddingTop: 30,
+    paddingBottom: 10
+  },
   colorCodeSection: {
     position: 'absolute',
     display: 'flex',
@@ -71,6 +81,9 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: '#ffffff',
     textAlign: 'center'
+  },
+  signInform: {
+    marginTop: 30
   },
   formMessage: {
     marginTop: 10,

@@ -87,10 +87,18 @@ class SignIn extends Component {
 
   render() {
     return (
-      <View style={styles.profileContainer}>
+      <View style={styles.signInContainer}>
+        <View>
+          <Text>
+            Picklette allows you to create and save colors.  
+          </Text>
+          <Text>
+            Sign up or sign in to get going!
+          </Text>
+        </View>
       {
         !this.state.signUpVisible &&
-        <View>
+        <View style={styles.signInform}>
           <Form
             ref='form'
             type={signInFields}
@@ -118,7 +126,7 @@ class SignIn extends Component {
       }
       {
         this.state.signUpVisible &&
-        <View>
+        <View style={styles.signInform}>
           <Form
             ref='signUpform'
             type={signUpFields}
