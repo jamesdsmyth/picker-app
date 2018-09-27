@@ -135,7 +135,6 @@ function* saveColor(data) {
     );
 
     yield put(saveColorSuccessAction());
-    // alert('Color saved!');
   } catch(error) {
     yield put(saveColorFailureAction(error))
   }

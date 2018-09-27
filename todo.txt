@@ -1,2 +1,3 @@
 - need a reset password function
 - add user profile section
+- add delete color when swiping left
