@@ -29,10 +29,8 @@ class SavedColors extends Component {
     return str2.toString();
   }
 
-  onSwipeLeft() {
-    this.setState({
-
-    });
+  onSwipeLeft(index) {
+    console.log(index)
   }
 
   onSwipeRight() {
@@ -62,7 +60,7 @@ class SavedColors extends Component {
 
     const list = this.props.colors.list || {};
     const arr = Object.keys(list).map(item => {
-      return list[item]
+      return list[item];
     });
     
     const descendingArr = arr.reverse();
@@ -81,20 +79,22 @@ class SavedColors extends Component {
     }
 
     if(arr.length > 0) {
+
+      const key = this.createId;
+
+
       return (
         <View style={styles.container}>
           <FlatList
             data={descendingArr}
-            keyExtractor={this.createId}
+            keyExtractor={key}
             renderItem={
-              ({item}) => {
+              ({item, index}) => {
                 return (
                   <GestureRecognizer
-                    onSwipe={(direction, state) => this.onSwipe(direction, state)}
-                    // onSwipeUp={(state) => this.onSwipeUp(state)}
-                    // onSwipeDown={(state) => this.onSwipeDown(state)}
-                    onSwipeLeft={() => this.onSwipeLeft()}
-                    onSwipeRight={() => this.onSwipeRight()}
+                    onSwipe={(direction, index) => this.onSwipe(direction, index)}
+                    onSwipeLeft={(index) => this.onSwipeLeft(index)}
+                    onSwipeRight={(index) => this.onSwipeRight(index)}
                     config={config}
                     style={
                     [
