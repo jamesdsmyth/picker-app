@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, FlatList } from 'react-native';
 import styles from '../styles/styles';
 import { connect } from 'react-redux';
+import GestureRecognizer, { swipeDirections } from 'react-native-swipe-gestures';
 
 import { rgbToHexConversion } from '../utils/colorConversion';
 import { getColorsAction } from '../actions/actions';
@@ -28,7 +29,37 @@ class SavedColors extends Component {
     return str2.toString();
   }
 
+  onSwipeLeft() {
+    this.setState({
+
+    });
+  }
+
+  onSwipeRight() {
+    this.setState({myText: 'You swiped right!'});
+  }
+
+  onSwipe(gestureName) {
+    const { SWIPE_LEFT, SWIPE_RIGHT } = swipeDirections;
+    switch (gestureName) {
+      case SWIPE_LEFT:
+        console.log('SWIPE_LEFT');
+        // this.setState({backgroundColor: 'blue'});
+        break;
+      case SWIPE_RIGHT:
+        console.log('SWIPE_RIGHT');
+        // this.setState({backgroundColor: 'yellow'});
+        break;
+    }
+  }
+
   render() {
+
+    const config = {
+      velocityThreshold: 0.3,
+      directionalOffsetThreshold: 80
+    };
+
     const list = this.props.colors.list || {};
     const arr = Object.keys(list).map(item => {
       return list[item]
@@ -58,7 +89,13 @@ class SavedColors extends Component {
             renderItem={
               ({item}) => {
                 return (
-                  <View
+                  <GestureRecognizer
+                    onSwipe={(direction, state) => this.onSwipe(direction, state)}
+                    // onSwipeUp={(state) => this.onSwipeUp(state)}
+                    // onSwipeDown={(state) => this.onSwipeDown(state)}
+                    onSwipeLeft={() => this.onSwipeLeft()}
+                    onSwipeRight={() => this.onSwipeRight()}
+                    config={config}
                     style={
                     [
                       styles.savedColor,
@@ -73,7 +110,7 @@ class SavedColors extends Component {
                         RGB {item.rgb[0]}, {item.rgb[1]}, {item.rgb[2]}
                       </Text>
                     </View>
-                  </View>
+                  </GestureRecognizer>
                 )
               }   
             }
