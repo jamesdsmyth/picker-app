@@ -1,3 +1,2 @@
-- need a reset password function - DONE
-- add user profile section - DONE
 - add delete color when swiping left - IN PROGRESS nearly done
+- check persist data, if exists then no need to get the colors again

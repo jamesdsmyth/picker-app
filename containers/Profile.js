@@ -22,7 +22,6 @@ class Profile extends Component {
     persistorStore.persistor.purge();
     this.props.navigation.navigate('Home');
     this.props.signOutDispatch();
-    alert('You have signed out')
   }
 
   resetPassword() {

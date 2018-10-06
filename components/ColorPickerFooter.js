@@ -31,25 +31,17 @@ const ColorPickerFooter = (props) => (
         </Text>
         :
         <View style={styles.colorCodeButtonSection}>
-          <TouchableHighlight
-            onPress={() => props.profile()}
-          >
+          <TouchableHighlight onPress={() => props.profile()}>
             <Text style={styles.colorCodeSectionText}>
               Profile
             </Text>
           </TouchableHighlight>
-
-          <TouchableHighlight
-            onPress={() => props.saveColor(props.bgColor)}
-          >
+          <TouchableHighlight onPress={() => props.saveColor(props.bgColor)}>
             <Text style={styles.colorCodeSectionText}>
               Save
             </Text>
           </TouchableHighlight>
-
-          <TouchableHighlight
-            onPress={() => props.savedColors()}
-          >
+          <TouchableHighlight onPress={() => props.savedColors()}>
             <Text style={styles.colorCodeSectionText}>
               My Colors
             </Text>
