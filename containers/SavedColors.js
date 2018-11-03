@@ -29,8 +29,8 @@ class SavedColors extends Component {
     return str2.toString();
   }
 
-  onSwipeLeft() {
-    console.log(this);
+  onSwipeLeft(id) {
+    console.log('SWIPING LEFTtttt', id);
   }
 
   onSwipe(gestureName) {
@@ -88,8 +88,8 @@ class SavedColors extends Component {
             renderRow = { (item, sectionId, rowId) => 
               <GestureRecognizer
                 onSwipe={(direction) => this.onSwipe(direction)}
-                onSwipeLeft={this.onSwipeLeft}
-                onSwipeRight={this.onSwipeRight}
+                onSwipeLeft={() => this.onSwipeLeft(rowId)}
+                onSwipeRight={() => this.onSwipeRight(rowId)}
                 config={config}
                 style={
                 [
