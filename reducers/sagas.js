@@ -52,7 +52,6 @@ function* signIn(data) {
 // need to add dispatches here so we show a success or error message.
 // need to restyle all of this now
 function* resetPassword(data) {
-
   try {
     const auth = firebase.auth();
     const result = yield call(

@@ -43,7 +43,7 @@ const ColorPickerFooter = (props) => (
           </TouchableHighlight>
           <TouchableHighlight onPress={() => props.savedColors()}>
             <Text style={styles.colorCodeSectionText}>
-              My Colors
+              My Palette
             </Text>
           </TouchableHighlight>
         </View>

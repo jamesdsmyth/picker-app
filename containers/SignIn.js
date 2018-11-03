@@ -90,7 +90,7 @@ class SignIn extends Component {
       <View style={styles.signInContainer}>
         <View>
           <Text>
-            Picklette allows you to create and save colors.  
+            Picklette allows you to create and save colors to your palette.  
           </Text>
           <Text>
             Sign up or sign in to get going!

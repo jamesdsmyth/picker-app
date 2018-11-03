@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, FlatList } from 'react-native';
+import { View, Text, FlatList, ListView } from 'react-native';
 import styles from '../styles/styles';
 import { connect } from 'react-redux';
 import GestureRecognizer, { swipeDirections } from 'react-native-swipe-gestures';
@@ -13,7 +13,7 @@ class SavedColors extends Component {
   }
 
   static navigationOptions = {
-    title: 'Colors'
+    title: 'Palette'
   }
 
   componentWillMount() {
@@ -29,12 +29,8 @@ class SavedColors extends Component {
     return str2.toString();
   }
 
-  onSwipeLeft(index) {
-    console.log(index)
-  }
-
-  onSwipeRight() {
-    this.setState({myText: 'You swiped right!'});
+  onSwipeLeft() {
+    console.log(this);
   }
 
   onSwipe(gestureName) {
@@ -46,7 +42,7 @@ class SavedColors extends Component {
         break;
       case SWIPE_RIGHT:
         console.log('SWIPE_RIGHT');
-        // this.setState({backgroundColor: 'yellow'});
+        // this.setState({backgroundColor: 'yellow '});
         break;
     }
   }
@@ -79,42 +75,40 @@ class SavedColors extends Component {
     }
 
     if(arr.length > 0) {
-
-      const key = this.createId;
-
+      const ds = new ListView.DataSource({ 
+        rowHasChanged: (r1, r2) => r1 !== r2 }); 
+  
+      const dataSource = ds.cloneWithRows(descendingArr);
 
       return (
         <View style={styles.container}>
-          <FlatList
-            data={descendingArr}
-            keyExtractor={key}
-            renderItem={
-              ({item, index}) => {
-                return (
-                  <GestureRecognizer
-                    onSwipe={(direction, index) => this.onSwipe(direction, index)}
-                    onSwipeLeft={(index) => this.onSwipeLeft(index)}
-                    onSwipeRight={(index) => this.onSwipeRight(index)}
-                    config={config}
-                    style={
-                    [
-                      styles.savedColor,
-                      { 'backgroundColor': `rgb(${item.rgb[0]}, ${item.rgb[1]}, ${item.rgb[2]})` }
-                    ]
-                  }>
-                    <View style={styles.savedColorContainer}>
-                      <Text style={styles.savedColorText}>
-                        HEX {rgbToHexConversion(item.rgb)}
-                      </Text>
-                      <Text style={styles.savedColorText}>
-                        RGB {item.rgb[0]}, {item.rgb[1]}, {item.rgb[2]}
-                      </Text>
-                    </View>
-                  </GestureRecognizer>
-                )
-              }   
+
+          <ListView 
+            dataSource = { dataSource } 
+            renderRow = { (item, sectionId, rowId) => 
+              <GestureRecognizer
+                onSwipe={(direction) => this.onSwipe(direction)}
+                onSwipeLeft={this.onSwipeLeft}
+                onSwipeRight={this.onSwipeRight}
+                config={config}
+                style={
+                [
+                  styles.savedColor,
+                  { 'backgroundColor': `rgb(${item.rgb[0]}, ${item.rgb[1]}, ${item.rgb[2]})` }
+                ]
+              }>
+                <View style={styles.savedColorContainer}
+                >
+                  <Text style={styles.savedColorText}>
+                    HEX {rgbToHexConversion(item.rgb)}
+                  </Text>
+                  <Text style={styles.savedColorText}>
+                    RGB {item.rgb[0]}, {item.rgb[1]}, {item.rgb[2]}
+                  </Text>
+                </View>
+              </GestureRecognizer>
             }
-          />
+          /> 
         </View>
       )
     }

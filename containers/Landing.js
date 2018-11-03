@@ -19,6 +19,10 @@ class Landing extends Component {
     header: null
   }
 
+  componentWillReceiveProps(newProps) {
+    // this.props.colors.list = newProps.list;
+  }
+
   // calling this function will navigate to the users colors page
   savedColors() {
     if(this.props.user.loggedIn) {
@@ -31,7 +35,20 @@ class Landing extends Component {
   // calling this function will dispatch an action that will write the color to firebase
   saveColor(colorArr) {
     if(this.props.user.loggedIn) {
-      this.props.saveColorDispatch(this.props.user.uid, colorArr);
+      // let isValid = true;
+
+      // Object.keys(this.props.colors.list).forEach(item => {
+      //   console.log(this.props.colors.list[item].rgb, colorArr)
+      //   if(this.props.colors.list[item].rgb == colorArr) {
+      //     isValid = false;
+      //   }
+      // });
+
+      // if(isValid) {
+        this.props.saveColorDispatch(this.props.user.uid, colorArr);
+      // } else {
+      //   alert('not valid');
+      // }
     } else {
       this.props.navigation.navigate('SignIn');
       this.props.tempSaveColorDispatch(colorArr);
@@ -62,9 +79,12 @@ class Landing extends Component {
 }
 
 const mapStateToProps = (state) => {
+
+  console.log('THE NEW STATE IS', state.getColorsReducer);
   return {
     user: state.currentUserReducer,
-    color: state.saveColorReducer
+    color: state.saveColorReducer,
+    colors: state.getColorsReducer
   }
 }
 

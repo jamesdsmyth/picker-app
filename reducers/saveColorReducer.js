@@ -1,5 +1,4 @@
 const saveColorReducer = (state = {}, action) => {
-  console.log(action.type);
   switch(action.type) {
 
     case 'SAVE_COLOR':
