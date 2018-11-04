@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, FlatList, ListView } from 'react-native';
+import { View, Text, TouchableHighlight, ListView } from 'react-native';
 import styles from '../styles/styles';
 import { connect } from 'react-redux';
 import GestureRecognizer, { swipeDirections } from 'react-native-swipe-gestures';
@@ -10,6 +10,12 @@ import { getColorsAction } from '../actions/actions';
 class SavedColors extends Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      currentSelected: -1
+    };
+
+    this.onSwipeLeft = this.onSwipeLeft.bind(this);
   }
 
   static navigationOptions = {
@@ -30,7 +36,9 @@ class SavedColors extends Component {
   }
 
   onSwipeLeft(id) {
-    console.log('SWIPING LEFTtttt', id);
+    this.setState({
+      currentSelected: id
+    });
   }
 
   onSwipe(gestureName) {
@@ -80,20 +88,23 @@ class SavedColors extends Component {
   
       const dataSource = ds.cloneWithRows(descendingArr);
 
+      console.log('the currently selected is', this.state.currentSelected);
+
       return (
         <View style={styles.container}>
-
           <ListView 
             dataSource = { dataSource } 
             renderRow = { (item, sectionId, rowId) => 
-              <GestureRecognizer
-                onSwipe={(direction) => this.onSwipe(direction)}
-                onSwipeLeft={() => this.onSwipeLeft(rowId)}
-                onSwipeRight={() => this.onSwipeRight(rowId)}
-                config={config}
+              // <GestureRecognizer
+              <TouchableHighlight
+                // onSwipe={(direction) => this.onSwipe(direction)}
+                // onSwipeLeft={() => this.onSwipeLeft(rowId)}
+                // onSwipeRight={() => this.onSwipeRight(rowId)}
+                // config={config}
+                onPress={() => this.onSwipeLeft(rowId)}
                 style={
                 [
-                  styles.savedColor,
+                  rowId === this.setState.currentSelected ? styles.openColor : styles.savedColor,
                   { 'backgroundColor': `rgb(${item.rgb[0]}, ${item.rgb[1]}, ${item.rgb[2]})` }
                 ]
               }>
@@ -106,7 +117,7 @@ class SavedColors extends Component {
                     RGB {item.rgb[0]}, {item.rgb[1]}, {item.rgb[2]}
                   </Text>
                 </View>
-              </GestureRecognizer>
+              </TouchableHighlight>
             }
           /> 
         </View>

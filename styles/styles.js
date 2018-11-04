@@ -118,6 +118,13 @@ const styles = StyleSheet.create({
     marginBottom: 5,
     alignItems: 'flex-start'
   },
+  openColor: {
+    flex: 5,
+    width: window.width,
+    paddingTop: 70,
+    marginBottom: 5,
+    alignItems: 'flex-start'
+  },
   notification: {
     position: 'absolute',
     top: 0,
