@@ -101,7 +101,7 @@ class SavedColors extends Component {
                 // onSwipeLeft={() => this.onSwipeLeft(rowId)}
                 // onSwipeRight={() => this.onSwipeRight(rowId)}
                 // config={config}
-                onPress={() => this.onSwipeLeft(rowId)}
+                // onPress={() => this.onSwipeLeft(rowId)}
                 style={
                 [
                   rowId === this.setState.currentSelected ? styles.openColor : styles.savedColor,
